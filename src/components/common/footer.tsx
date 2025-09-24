@@ -62,8 +62,8 @@ export default function Footer() {
 
                 <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
                     <p className="mb-4 md:mb-0">© {new Date().getFullYear()} DevilsLab MVP • All rights reserved</p>
-                    <a href="https://devilslab.io" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors">
-                        Powered by DevilsLab <ArrowUpRight size={16} />
+                    <a href="https://dndx.io" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors">
+                        Powered by DNDX <ArrowUpRight size={16} />
                     </a>
                 </div>
             </div>
