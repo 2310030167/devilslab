@@ -5,8 +5,10 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import Image from 'next/image';
 import HeroBackground from './hero-background';
 import SyncGalaxyModal from './sync-galaxy-modal';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const HeroSection = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -69,6 +71,7 @@ const MarqueeSection = () => (
 
 const ProjectsSection = ({ onOpenModal }: { onOpenModal: () => void }) => {
     const sectionRef = useRef<HTMLElement>(null);
+    const dndxLogo = PlaceHolderImages.find(p => p.id === 'dndx-logo');
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -99,15 +102,25 @@ const ProjectsSection = ({ onOpenModal }: { onOpenModal: () => void }) => {
                             <span className="tag bg-primary/10 border border-primary text-primary px-4 py-2 rounded-full text-sm">Web Platform</span>
                             <span className="tag bg-primary/10 border border-primary text-primary px-4 py-2 rounded-full text-sm">Community</span>
                             <span className="tag bg-primary/10 border border-primary text-primary px-4 py-2 rounded-full text-sm">Development</span>
-                            <span className="tag bg-accent/10 border border-accent text-accent px-4 py-2 rounded-full text-sm font-semibold">Powered by DNDX</span>
                         </div>
                         <Button onClick={onOpenModal} className="rounded-full px-8 py-6 text-base font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">Learn More</Button>
                         <Button asChild variant="outline" className="ml-4 rounded-full px-8 py-6 text-base font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
                             <a href="https://syncgalaxy.io/" target="_blank" rel="noopener noreferrer">Visit Project</a>
                         </Button>
                     </div>
-                    <div className="h-[400px] bg-gradient-to-br from-[#F8F9FA] to-[#E9ECEF] rounded-2xl flex items-center justify-center relative overflow-hidden border border-black/10 shadow-2xl">
-                        <div className="text-5xl text-primary/30 font-light">SyncGalaxy</div>
+                    <div className="h-[400px] bg-gradient-to-br from-[#F8F9FA] to-[#E9ECEF] rounded-2xl flex flex-col items-center justify-center relative overflow-hidden border border-black/10 shadow-2xl p-8">
+                        <div className="text-5xl text-primary/30 font-light mb-4">SyncGalaxy</div>
+                        {dndxLogo && (
+                            <Image 
+                                src={dndxLogo.imageUrl} 
+                                alt={dndxLogo.description}
+                                width={300}
+                                height={100}
+                                data-ai-hint={dndxLogo.imageHint}
+                                className="object-contain"
+                            />
+                        )}
+                        <p className="text-sm text-muted-foreground mt-4">DevilsLab is powered by DNDX</p>
                     </div>
                 </div>
             </div>
