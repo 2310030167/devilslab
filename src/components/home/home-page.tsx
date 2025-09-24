@@ -12,6 +12,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Bot, Link2, Code, Briefcase, BarChart, BookOpen, Mail, Phone, MapPin } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const HeroSection = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -269,6 +270,52 @@ const AboutSection = () => {
     );
 };
 
+const FaqSection = () => {
+  const faqItems = [
+    {
+      question: "What types of projects does DevilsLab specialize in?",
+      answer: "DevilsLab specializes in engineering complex digital solutions. Our core areas include AI & Machine Learning, Web3 & Blockchain development, custom web platform creation (SaaS, marketplaces), and comprehensive digital transformation strategies for businesses of all sizes."
+    },
+    {
+      question: "How do we start a project with you?",
+      answer: "Starting a project is simple. It begins with an initial consultation where we discuss your idea and goals. Following that, we move to a proposal and planning phase. Once approved, our team proceeds with design, development, and regular check-ins before final deployment and support."
+    },
+    {
+      question: "Do you work with startups as well as established companies?",
+      answer: "Absolutely. We are passionate about innovation at every scale. We offer flexible engagement models tailored for early-stage startups to help them build MVPs and scale, as well as robust, enterprise-grade solutions for established corporations seeking digital transformation."
+    },
+    {
+      question: "What is SyncGalaxy and how does it relate to DevilsLab?",
+      answer: "SyncGalaxy is our flagship project, a global creator and startup growth hub. It represents our capability to build large-scale, community-driven platforms from the ground up and serves as a testament to our expertise in web platform development and ecosystem building."
+    },
+    {
+      question: "What is the typical timeline and cost for a project?",
+      answer: "Project timelines and costs vary significantly based on the scope, complexity, and technologies involved. After our initial consultation, we provide a detailed project proposal with a clear breakdown of deliverables, timelines, and pricing to ensure full transparency."
+    }
+  ];
+
+  return (
+    <section id="faq" className="py-32 px-8 bg-gray-50">
+      <h2 className="section-title">Frequently Asked Questions</h2>
+      <p className="section-subtitle">Have questions? We have answers. Find the most common inquiries below.</p>
+      <div className="max-w-4xl mx-auto">
+        <Accordion type="multiple" className="w-full">
+          {faqItems.map((item, index) => (
+            <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-gray-200/80 rounded-2xl shadow-lg mb-4 px-6">
+              <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline">
+                {item.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-base text-muted-foreground pt-2">
+                {item.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </section>
+  );
+};
+
 const ContactSection = () => {
     return (
         <section id="contact" className="py-32 px-8 bg-gray-50">
@@ -320,6 +367,7 @@ export default function HomePage() {
       <ResearchSection />
       <CareersSection />
       <AboutSection />
+      <FaqSection />
       <ContactSection />
       <SyncGalaxyModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
