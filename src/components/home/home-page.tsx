@@ -99,6 +99,7 @@ const ProjectsSection = ({ onOpenModal }: { onOpenModal: () => void }) => {
                             <span className="tag bg-primary/10 border border-primary text-primary px-4 py-2 rounded-full text-sm">Web Platform</span>
                             <span className="tag bg-primary/10 border border-primary text-primary px-4 py-2 rounded-full text-sm">Community</span>
                             <span className="tag bg-primary/10 border border-primary text-primary px-4 py-2 rounded-full text-sm">Development</span>
+                            <span className="tag bg-accent/10 border border-accent text-accent px-4 py-2 rounded-full text-sm font-semibold">Powered by DNDX</span>
                         </div>
                         <Button onClick={onOpenModal} className="rounded-full px-8 py-6 text-base font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">Learn More</Button>
                         <Button asChild variant="outline" className="ml-4 rounded-full px-8 py-6 text-base font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5">
