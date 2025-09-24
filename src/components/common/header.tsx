@@ -28,6 +28,35 @@ export default function Header() {
     { href: '/#contact', label: 'Contact' },
   ];
 
+  const NavLink = ({ href, label }: { href: string, label: string }) => {
+    if (href.startsWith('/#')) {
+      return (
+        <a
+          href={href}
+          className={cn(
+            "text-primary transition-colors duration-300 relative hover:text-accent",
+            "after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
+          )}
+        >
+          {label}
+        </a>
+      );
+    }
+    return (
+      <Link
+        href={href}
+        className={cn(
+          "text-primary transition-colors duration-300 relative hover:text-accent",
+          "after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full",
+          pathname === href && "text-accent font-semibold after:w-full"
+        )}
+      >
+        {label}
+      </Link>
+    );
+  };
+
+
   return (
     <header className={cn(
       "fixed top-0 left-0 right-0 z-[1000] py-6 px-8 flex justify-between items-center transition-all duration-300 ease-in-out",
@@ -38,20 +67,10 @@ export default function Header() {
       </Link>
       <nav className="hidden md:flex gap-8 items-center">
         {navLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className={cn(
-              "text-primary transition-colors duration-300 relative hover:text-accent",
-              "after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full",
-              pathname === link.href && "text-accent font-semibold after:w-full"
-            )}
-          >
-            {link.label}
-          </Link>
+          <NavLink key={link.href} href={link.href} label={link.label} />
         ))}
         <Button asChild className="rounded-full px-8 py-6 text-base font-semibold shadow-lg hover:shadow-xl transition-shadow transform hover:-translate-y-0.5">
-          <Link href="/#contact">Start a Project</Link>
+          <a href="/#contact">Start a Project</a>
         </Button>
       </nav>
     </header>

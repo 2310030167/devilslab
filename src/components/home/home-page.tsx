@@ -9,6 +9,9 @@ import Image from 'next/image';
 import HeroBackground from './hero-background';
 import SyncGalaxyModal from './sync-galaxy-modal';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Bot, Link2, Code, Briefcase, BarChart, BookOpen, Mail, Phone, MapPin } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 const HeroSection = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -69,6 +72,54 @@ const MarqueeSection = () => (
     </div>
 );
 
+const ServiceCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
+    <div className="service-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 text-left">
+        <div className="text-accent text-4xl mb-4">{icon}</div>
+        <h3 className="text-xl font-bold mb-2 text-primary">{title}</h3>
+        <p className="text-muted-foreground leading-relaxed">{description}</p>
+    </div>
+);
+
+const ServicesSection = () => {
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.fromTo('.section-title, .section-subtitle', { opacity: 0, y: 50 }, {
+                scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
+                opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: 'power2.out'
+            });
+            gsap.utils.toArray('.service-card').forEach((card, i) => {
+                gsap.fromTo(card as HTMLElement, { opacity: 0, y: 50 }, {
+                    scrollTrigger: { trigger: card as HTMLElement, start: 'top 85%' },
+                    opacity: 1, y: 0, duration: 0.8, delay: (i % 3) * 0.1, ease: 'power2.out'
+                });
+            });
+        }, sectionRef);
+        return () => ctx.revert();
+    }, []);
+
+    const services = [
+        { icon: <Bot />, title: "AI & Machine Learning", description: "Develop intelligent systems, automation, and predictive analytics to solve complex business challenges." },
+        { icon: <Link2 />, title: "Web3 & Blockchain", description: "Build decentralized applications, smart contracts, and token ecosystems on the next generation of the web." },
+        { icon: <Code />, title: "Web Platform Development", description: "Create scalable, high-performance web portals, SaaS platforms, and digital marketplaces from scratch." },
+        { icon: <Briefcase />, title: "Business Transformation", description: "Leverage technology to streamline operations, enhance customer engagement, and drive business growth." },
+        { icon: <BarChart />, title: "Digital Marketing", description: "Data-driven marketing strategies, performance marketing, and content creation to build your brand's presence." },
+        { icon: <BookOpen />, title: "Cutting-Edge Research", description: "Engage in forward-thinking research to explore and define the future of technology and its applications." },
+    ];
+
+    return (
+        <section ref={sectionRef} id="services" className="py-32 px-8 bg-gray-50">
+            <h2 className="section-title">Our Core Services</h2>
+            <p className="section-subtitle">We engineer solutions that drive innovation and growth.</p>
+            <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {services.map(service => <ServiceCard key={service.title} {...service} />)}
+            </div>
+        </section>
+    );
+};
+
+
 const ProjectsSection = ({ onOpenModal }: { onOpenModal: () => void }) => {
     const sectionRef = useRef<HTMLElement>(null);
 
@@ -108,7 +159,7 @@ const ProjectsSection = ({ onOpenModal }: { onOpenModal: () => void }) => {
                         </Button>
                     </div>
                     <div className="h-[400px] bg-gradient-to-br from-[#F8F9FA] to-[#E9ECEF] rounded-2xl flex flex-col items-center justify-center relative overflow-hidden border border-black/10 shadow-2xl p-8">
-                        <Image 
+                         <Image 
                             src="/images/syncgalaxy-logo.png"
                             alt="SyncGalaxy Logo"
                             width={300}
@@ -141,6 +192,37 @@ const ProjectsSection = ({ onOpenModal }: { onOpenModal: () => void }) => {
     );
 };
 
+const ResearchSection = () => {
+    const sectionRef = useRef<HTMLElement>(null);
+    useEffect(() => {
+        // Animation logic
+    }, []);
+
+    const papers = [
+        { title: "The Impact of Decentralized AI on Data Privacy", authors: "A. Sharma, Dr. L. Chen", published: "Q3 2025", abstract: "This paper explores novel architectures for AI models that operate on decentralized data, enhancing user privacy without sacrificing performance." },
+        { title: "Scalable Consensus Mechanisms for Web3 Platforms", authors: "J. Doe, M. Patel", published: "Q4 2025", abstract: "Analyzing the trade-offs between speed, security, and decentralization in next-generation blockchain consensus protocols." },
+        { title: "AI-Driven Personalization in Digital Marketing", authors: "S. Lee, K. Singh", published: "Q1 2026", abstract: "A study on the effectiveness of machine learning models in creating hyper-personalized user experiences and its impact on conversion rates." },
+    ];
+
+    return (
+        <section ref={sectionRef} id="research" className="py-32 px-8 bg-white">
+            <h2 className="section-title">Pioneering Research</h2>
+            <p className="section-subtitle">Exploring the frontiers of technology to shape the future.</p>
+            <div className="max-w-screen-lg mx-auto">
+                {papers.map((paper, index) => (
+                    <div key={paper.title} className={`research-item flex flex-col md:flex-row justify-between items-start md:items-center py-8 ${index === 0 ? 'border-t' : ''} border-b border-gray-200`}>
+                        <div className="research-info mb-6 md:mb-0">
+                            <h3 className="text-2xl font-bold mb-2 text-primary">{paper.title}</h3>
+                            <span className="text-sm text-gray-500 block mb-4">Authors: {paper.authors} | Published: {paper.published}</span>
+                            <p className="text-muted-foreground leading-relaxed max-w-prose">{paper.abstract}</p>
+                        </div>
+                        <Button disabled className="rounded-full px-8 py-6 text-base font-semibold cursor-not-allowed shrink-0">Coming Soon</Button>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+};
 
 const CareersSection = () => {
     return (
@@ -160,30 +242,68 @@ const CareersSection = () => {
     );
 };
 
-const ContactCtaSection = () => {
-    const sectionRef = useRef<HTMLElement>(null);
-
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-             gsap.fromTo('.contact-title', { opacity: 0, y: 50 }, {
-                scrollTrigger: { trigger: '.contact-title', start: 'top 80%' },
-                opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'
-            });
-            gsap.fromTo('.contact-subtitle', { opacity: 0, y: 30 }, {
-                scrollTrigger: { trigger: '.contact-subtitle', start: 'top 80%' },
-                opacity: 1, y: 0, duration: 0.8, delay: 0.2, ease: 'power2.out'
-            });
-        }, sectionRef);
-        return () => ctx.revert();
-    }, []);
-
+const AboutSection = () => {
+    const dndxImage = PlaceHolderImages.find(img => img.id === 'dndx-logo');
     return (
-        <section ref={sectionRef} id="contact" className="py-32 px-8 text-center bg-gradient-to-br from-[#F8F9FA] to-white">
-            <h2 className="contact-title text-6xl font-bold mb-4 text-gradient">Have an idea?</h2>
-            <p className="contact-subtitle text-2xl text-muted-foreground mb-12">Let's build the future together.</p>
-            <Button asChild size="lg" className="rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
-                <a href="mailto:hello@devilslab.io">Get In Touch</a>
-            </Button>
+        <section id="about" className="py-32 px-8">
+            <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 className="text-5xl font-bold mb-8 text-gradient text-left">Engineering Digital Realities</h2>
+                    <p className="text-lg text-muted-foreground mb-6 leading-relaxed">DevilsLab is a collective of visionary engineers, researchers, and strategists dedicated to pushing the boundaries of technology. We partner with ambitious startups and enterprises to architect and build the next generation of digital products.</p>
+                    <p className="text-lg text-muted-foreground leading-relaxed">Our mission is to translate complex challenges into elegant, scalable, and impactful solutions. From intelligent AI systems to decentralized Web3 platforms, we are committed to delivering excellence and shaping a smarter, more connected future.</p>
+                </div>
+                <div className="h-[400px] bg-gradient-to-br from-[#F8F9FA] to-[#E9ECEF] rounded-2xl flex items-center justify-center relative overflow-hidden border border-black/10 shadow-2xl p-8">
+                    {dndxImage && (
+                        <Image
+                            src={dndxImage.imageUrl}
+                            alt={dndxImage.description}
+                            width={400}
+                            height={400}
+                            data-ai-hint={dndxImage.imageHint}
+                            className="object-cover w-full h-full"
+                        />
+                    )}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+const ContactSection = () => {
+    return (
+        <section id="contact" className="py-32 px-8 bg-gray-50">
+            <h2 className="section-title">Get In Touch</h2>
+            <p className="section-subtitle">Have an idea? Let's build the future together.</p>
+            <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-16 bg-white p-12 rounded-2xl shadow-2xl border border-gray-200/80">
+                <div className="contact-form">
+                    <h3 className="text-3xl font-bold mb-8 text-primary">Send Us a Message</h3>
+                    <form className="space-y-6">
+                        <Input type="text" placeholder="Your Name" className="py-6" />
+                        <Input type="email" placeholder="Your Email" className="py-6" />
+                        <Textarea placeholder="Your Message" rows={5} />
+                        <Button type="submit" size="lg" className="w-full rounded-full py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                            Send Message
+                        </Button>
+                    </form>
+                </div>
+                <div className="contact-info bg-primary text-white p-12 rounded-2xl flex flex-col justify-center">
+                    <h3 className="text-3xl font-bold mb-8">Contact Information</h3>
+                    <div className="space-y-6 text-lg">
+                        <div className="flex items-center gap-4">
+                            <Mail size={24} />
+                            <a href="mailto:hello@devilslab.io" className="hover:underline">hello@devilslab.io</a>
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <Phone size={24} />
+                            <a href="tel:+91000000000" className="hover:underline">+91 000 000 0000</a>
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <MapPin size={24} />
+                            <span>Hyderabad, India</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     );
 };
@@ -195,9 +315,12 @@ export default function HomePage() {
     <>
       <HeroSection />
       <MarqueeSection />
+      <ServicesSection />
       <ProjectsSection onOpenModal={() => setIsModalOpen(true)} />
+      <ResearchSection />
       <CareersSection />
-      <ContactCtaSection />
+      <AboutSection />
+      <ContactSection />
       <SyncGalaxyModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
