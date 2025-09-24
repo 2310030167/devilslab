@@ -71,7 +71,6 @@ const MarqueeSection = () => (
 
 const ProjectsSection = ({ onOpenModal }: { onOpenModal: () => void }) => {
     const sectionRef = useRef<HTMLElement>(null);
-    const dndxLogo = PlaceHolderImages.find(p => p.id === 'dndx-logo');
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -109,17 +108,14 @@ const ProjectsSection = ({ onOpenModal }: { onOpenModal: () => void }) => {
                         </Button>
                     </div>
                     <div className="h-[400px] bg-gradient-to-br from-[#F8F9FA] to-[#E9ECEF] rounded-2xl flex flex-col items-center justify-center relative overflow-hidden border border-black/10 shadow-2xl p-8">
-                        <div className="text-5xl text-primary/30 font-light mb-4">SyncGalaxy</div>
-                        {dndxLogo && (
-                            <Image 
-                                src={dndxLogo.imageUrl} 
-                                alt={dndxLogo.description}
-                                width={300}
-                                height={100}
-                                data-ai-hint={dndxLogo.imageHint}
-                                className="object-contain"
-                            />
-                        )}
+                        <Image 
+                            src="/images/syncgalaxy-logo.png"
+                            alt="SyncGalaxy Logo"
+                            width={300}
+                            height={100}
+                            data-ai-hint="logo"
+                            className="object-contain"
+                        />
                     </div>
                 </div>
             </div>
