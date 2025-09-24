@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import { Linkedin, Twitter, Github } from 'lucide-react';
-import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const SocialIcon = ({ href, children }: { href: string, children: React.ReactNode }) => (
     <a href={href} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 border border-white/20 rounded-lg flex items-center justify-center text-gray-300 transition-all duration-300 hover:bg-white hover:text-primary transform hover:-translate-y-0.5 hover:shadow-lg">
@@ -10,8 +8,6 @@ const SocialIcon = ({ href, children }: { href: string, children: React.ReactNod
 );
 
 export default function Footer() {
-    const dndxLogo = PlaceHolderImages.find(p => p.id === 'dndx-logo');
-
     return (
         <footer className="bg-primary text-gray-300 py-16 px-8">
             <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -45,19 +41,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className="mt-8 pt-8 border-t border-white/10 text-center text-gray-300">
-                <div className="flex justify-center items-center gap-4 mb-4">
-                    <p>DevilsLab is powered by</p>
-                    {dndxLogo && (
-                        <Image
-                            src={dndxLogo.imageUrl}
-                            alt={dndxLogo.description}
-                            width={100}
-                            height={33}
-                            data-ai-hint={dndxLogo.imageHint}
-                            className="object-contain invert brightness-0"
-                        />
-                    )}
-                </div>
+                <p className="mb-4">DevilsLab is powered by DNDX</p>
                 <p>© {new Date().getFullYear()} DevilsLab. All Rights Reserved.</p>
             </div>
         </footer>
