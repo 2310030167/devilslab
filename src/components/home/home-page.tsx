@@ -120,7 +120,6 @@ const ProjectsSection = ({ onOpenModal }: { onOpenModal: () => void }) => {
                                 className="object-contain"
                             />
                         )}
-                        <p className="text-sm text-muted-foreground mt-4">DevilsLab is powered by DNDX</p>
                     </div>
                 </div>
             </div>
