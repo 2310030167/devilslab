@@ -142,7 +142,7 @@ const ProjectsSection = ({ onOpenModal }: { onOpenModal: () => void }) => {
 
     return (
         <section ref={sectionRef} id="projects" className="py-32 px-8 max-w-screen-xl mx-auto">
-            <h2 className="projects-title text-6xl font-bold text-center mb-16 text-gradient">Our Projects</h2>
+            <h2 className="projects-title text-6xl font-bold text-center mb-16 text-gradient pb-4">Our Projects</h2>
             
             <div className="project-item mb-32">
                 <div className="grid md:grid-cols-2 gap-16 items-center min-h-[60vh]">
