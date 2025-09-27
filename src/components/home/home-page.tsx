@@ -210,7 +210,7 @@ const ResearchSection = () => {
 
     return (
         <section ref={sectionRef} id="research" className="py-32 px-8 bg-white">
-            <h2 className="section-title">Pioneering Research</h2>
+            <h2 className="section-title pb-4">Pioneering Research</h2>
             <p className="section-subtitle">Exploring the frontiers of technology to shape the future.</p>
             <div className="max-w-screen-lg mx-auto">
                 {papers.map((paper, index) => (
