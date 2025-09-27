@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import HeroBackground from './hero-background';
+import ServicesBackground from './services-background';
 import SyncGalaxyModal from './sync-galaxy-modal';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Bot, Link2, Code, Briefcase, BarChart, BookOpen, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
@@ -74,7 +75,7 @@ const MarqueeSection = () => (
 );
 
 const ServiceCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
-    <div className="service-card bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 text-left">
+    <div className="service-card bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 text-left border border-white/20">
         <div className="text-accent text-4xl mb-4">{icon}</div>
         <h3 className="text-xl font-bold mb-2 text-primary">{title}</h3>
         <p className="text-muted-foreground leading-relaxed">{description}</p>
@@ -110,11 +111,14 @@ const ServicesSection = () => {
     ];
 
     return (
-        <section ref={sectionRef} id="services" className="py-32 px-8 bg-gray-50">
-            <h2 className="section-title">Our Core Services</h2>
-            <p className="section-subtitle">We engineer solutions that drive innovation and growth.</p>
-            <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {services.map(service => <ServiceCard key={service.title} {...service} />)}
+        <section ref={sectionRef} id="services" className="relative py-32 px-8 bg-gray-50 overflow-hidden">
+            <ServicesBackground />
+            <div className="relative z-10">
+                <h2 className="section-title">Our Core Services</h2>
+                <p className="section-subtitle">We engineer solutions that drive innovation and growth.</p>
+                <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {services.map(service => <ServiceCard key={service.title} {...service} />)}
+                </div>
             </div>
         </section>
     );
