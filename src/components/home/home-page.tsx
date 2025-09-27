@@ -9,7 +9,7 @@ import Image from 'next/image';
 import HeroBackground from './hero-background';
 import SyncGalaxyModal from './sync-galaxy-modal';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Bot, Link2, Code, Briefcase, BarChart, BookOpen, Mail, Phone, MapPin } from 'lucide-react';
+import { Bot, Link2, Code, Briefcase, BarChart, BookOpen, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -161,7 +161,7 @@ const ProjectsSection = ({ onOpenModal }: { onOpenModal: () => void }) => {
                     </div>
                     <div className="h-[400px] bg-gradient-to-br from-[#F8F9FA] to-[#E9ECEF] rounded-2xl flex flex-col items-center justify-center relative overflow-hidden border border-black/10 shadow-2xl p-8">
                          <Image 
-                            src="/images/syncgalaxy-logo.png"
+                            src="https://images.unsplash.com/photo-1680530033206-881e0a7e44b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWNoJTIwbG9nb3xlbnwwfHx8fDE3NTg2NzgzNjR8MA&ixlib=rb-4.1.0&q=80&w=1080"
                             alt="SyncGalaxy Logo"
                             width={300}
                             height={100}
@@ -175,15 +175,18 @@ const ProjectsSection = ({ onOpenModal }: { onOpenModal: () => void }) => {
             <div className="project-item">
                 <div className="grid md:grid-cols-2 gap-16 items-center min-h-[60vh]">
                      <div className="h-[400px] bg-gradient-to-br from-[#F8F9FA] to-[#E9ECEF] rounded-2xl flex items-center justify-center relative overflow-hidden border border-black/10 shadow-2xl">
-                        <div className="text-5xl text-primary/30 font-light">Coming Soon</div>
+                        <div className="text-5xl text-primary/30 font-light">Legal Lens AI</div>
                     </div>
                     <div>
-                        <h3 className="text-5xl font-bold mb-6 text-primary">Future Project</h3>
-                        <p className="text-lg text-muted-foreground mb-8 leading-relaxed">Our next groundbreaking solution is currently under development. We are pushing the boundaries of what's possible. Stay tuned for updates.</p>
+                        <h3 className="text-5xl font-bold mb-6 text-primary">Legal Lens AI</h3>
+                        <p className="text-lg text-muted-foreground mb-8 leading-relaxed">An AI that's better than a law firm. Legal Lens scans your legal documents, flags critical issues, and provides insights in seconds.</p>
+                        <p className="text-md text-muted-foreground/80 mb-8 leading-relaxed flex items-center gap-2">
+                            Powered by DNDX <ArrowUpRight size={16} />
+                        </p>
                         <div className="flex gap-4 flex-wrap mb-8">
-                            <span className="tag bg-primary/10 border border-primary text-primary px-4 py-2 rounded-full text-sm">Coming Soon</span>
-                            <span className="tag bg-primary/10 border border-primary text-primary px-4 py-2 rounded-full text-sm">Innovation</span>
-                            <span className="tag bg-primary/10 border border-primary text-primary px-4 py-2 rounded-full text-sm">Next-Gen</span>
+                            <span className="tag bg-primary/10 border border-primary text-primary px-4 py-2 rounded-full text-sm">AI</span>
+                            <span className="tag bg-primary/10 border border-primary text-primary px-4 py-2 rounded-full text-sm">Legal Tech</span>
+                            <span className="tag bg-primary/10 border border-primary text-primary px-4 py-2 rounded-full text-sm">Document Analysis</span>
                         </div>
                         <Button disabled className="rounded-full px-8 py-6 text-base font-semibold cursor-not-allowed">Coming Soon</Button>
                     </div>
