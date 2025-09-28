@@ -138,3 +138,11 @@ html {
         transform: translateY(0) scale(1);
     }
 }
+
+.timeline-item:nth-child(even) .timeline-content {
+    margin-left: auto;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-right: auto;
+}

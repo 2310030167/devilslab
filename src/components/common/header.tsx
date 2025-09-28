@@ -22,6 +22,7 @@ export default function Header() {
     { href: '/#services', label: 'Services' },
     { href: '/projects', label: 'Projects' },
     { href: '/research', label: 'Research' },
+    { href: '/process', label: 'Our Process' },
     { href: '/forum', label: 'Forum' },
     { href: '/#careers', label: 'Careers' },
     { href: '/#about', label: 'About' },
@@ -34,7 +35,7 @@ export default function Header() {
     if (href.startsWith('/#') && pathname === '/') {
       return (
         <a
-          href={href}
+          href={href.substring(1)} // Use href without '/#' for smooth scroll on same page
           className={cn(
             "text-primary transition-colors duration-300 relative hover:text-accent",
             "after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
