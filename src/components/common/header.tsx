@@ -20,7 +20,7 @@ export default function Header() {
 
   const navLinks = [
     { href: '/#services', label: 'Services' },
-    { href: '/#projects', label: 'Projects' },
+    { href: '/projects', label: 'Projects' },
     { href: '/#research', label: 'Research' },
     { href: '/forum', label: 'Forum' },
     { href: '/#careers', label: 'Careers' },
@@ -29,7 +29,7 @@ export default function Header() {
   ];
 
   const NavLink = ({ href, label }: { href: string, label: string }) => {
-    if (href.startsWith('/#')) {
+    if (href.startsWith('/#') && pathname === '/') {
       return (
         <a
           href={href}
