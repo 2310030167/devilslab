@@ -25,10 +25,12 @@ export default function Header() {
     { href: '/forum', label: 'Forum' },
     { href: '/#careers', label: 'Careers' },
     { href: '/#about', label: 'About' },
+    { href: '/team', label: 'Our Team' },
     { href: '/#contact', label: 'Contact' },
   ];
 
   const NavLink = ({ href, label }: { href: string, label: string }) => {
+    // Special handling for homepage hash links
     if (href.startsWith('/#') && pathname === '/') {
       return (
         <a
@@ -42,13 +44,15 @@ export default function Header() {
         </a>
       );
     }
+    
+    // For all other links (external pages or hash links from other pages)
     return (
       <Link
         href={href}
         className={cn(
           "text-primary transition-colors duration-300 relative hover:text-accent",
           "after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full",
-          pathname === href && "text-accent font-semibold after:w-full"
+          (pathname === href || (pathname === '/' && href === '/')) && "text-accent font-semibold after:w-full"
         )}
       >
         {label}
