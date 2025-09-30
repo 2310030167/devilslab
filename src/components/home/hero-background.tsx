@@ -13,45 +13,56 @@ export default function HeroBackground() {
     let scene: THREE.Scene,
         camera: THREE.PerspectiveCamera,
         renderer: THREE.WebGLRenderer,
-        particles: THREE.Points,
-        sphere: THREE.Mesh;
+        plexusGroup: THREE.Group,
+        nodes: THREE.Mesh[] = [],
+        lines: THREE.Line[] = [];
     
-    const mouse = { x: 0, y: 0 };
+    const mouse = new THREE.Vector2();
 
     const init = () => {
       try {
         scene = new THREE.Scene();
         camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current!, alpha: true });
+        camera.position.z = 25;
+        
+        renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current!, antialias: true, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        const geometry = new THREE.BufferGeometry();
-        const particleCount = 2000;
-        const positions = new Float32Array(particleCount * 3);
-        const colors = new Float32Array(particleCount * 3);
-        const color = new THREE.Color();
+        plexusGroup = new THREE.Group();
+        scene.add(plexusGroup);
 
-        for (let i = 0; i < particleCount * 3; i++) {
-          positions[i] = (Math.random() - 0.5) * 50;
-          color.setHSL(0.6, 0.5, 0.15); // Corresponds to #1A1A2E
-          colors[i * 3] = color.r;
-          colors[i * 3 + 1] = color.g;
-          colors[i * 3 + 2] = color.b;
+        const nodeCount = 80;
+        const radius = 10;
+        const nodeGeometry = new THREE.SphereGeometry(0.1, 16, 16);
+        
+        // Create nodes
+        for (let i = 0; i < nodeCount; i++) {
+          const phi = Math.acos(-1 + (2 * i) / nodeCount);
+          const theta = Math.sqrt(nodeCount * Math.PI) * phi;
+          
+          const node = new THREE.Mesh(
+            nodeGeometry,
+            new THREE.MeshBasicMaterial({ color: 0x0F3460, transparent: true, opacity: 0.8 })
+          );
+          
+          node.position.setFromSphericalCoords(radius, phi, theta);
+          nodes.push(node);
+          plexusGroup.add(node);
         }
 
-        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-        const material = new THREE.PointsMaterial({ size: 0.1, vertexColors: true, transparent: true, opacity: 0.8 });
-        particles = new THREE.Points(geometry, material);
-        scene.add(particles);
-
-        const sphereGeometry = new THREE.SphereGeometry(8, 32, 32);
-        const wireframeMaterial = new THREE.MeshBasicMaterial({ color: 0x1A1A2E, wireframe: true, transparent: true, opacity: 0.2 });
-        sphere = new THREE.Mesh(sphereGeometry, wireframeMaterial);
-        scene.add(sphere);
-
-        camera.position.z = 20;
+        // Create connections
+        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x1A1A2E, transparent: true, opacity: 0.15 });
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            if (nodes[i].position.distanceTo(nodes[j].position) < radius * 0.5) {
+              const geometry = new THREE.BufferGeometry().setFromPoints([nodes[i].position, nodes[j].position]);
+              const line = new THREE.Line(geometry, lineMaterial);
+              lines.push(line);
+              plexusGroup.add(line);
+            }
+          }
+        }
 
         animate();
       } catch(e) {
@@ -61,13 +72,29 @@ export default function HeroBackground() {
 
     const animate = () => {
       animationFrameId.current = requestAnimationFrame(animate);
+      const time = Date.now() * 0.0001;
 
-      particles.rotation.y += 0.0005;
-      sphere.rotation.y += 0.001;
-      sphere.rotation.x += 0.0005;
+      plexusGroup.rotation.y += 0.0005;
 
-      particles.rotation.x += (mouse.y * 0.00005);
-      particles.rotation.y += (mouse.x * 0.00005);
+      // Mouse interaction
+      plexusGroup.rotation.y += (mouse.x * 0.2 - plexusGroup.rotation.y) * 0.02;
+      plexusGroup.rotation.x += (-mouse.y * 0.2 - plexusGroup.rotation.x) * 0.02;
+
+      // Node drift and pulse animation
+      nodes.forEach((node, i) => {
+        const pulse = Math.sin(time * 5 + i * 0.3) * 0.4 + 0.6; // 0.6 to 1.0
+        (node.material as THREE.MeshBasicMaterial).opacity = pulse;
+        
+        const driftFactor = Math.sin(time * 0.5 + i) * 0.001;
+        node.position.x += driftFactor;
+        node.position.y -= driftFactor;
+      });
+      
+      // Central pulse
+      const centerPulse = (Math.sin(time * 3) + 1) / 2 * 0.1 + 0.1; // 0.1 to 0.2
+      lines.forEach(line => {
+        (line.material as THREE.LineBasicMaterial).opacity = centerPulse;
+      })
 
       renderer.render(scene, camera);
     };
@@ -98,7 +125,7 @@ export default function HeroBackground() {
       // Dispose Three.js objects
       if(scene) {
         scene.traverse(object => {
-          if (object instanceof THREE.Mesh) {
+          if (object instanceof THREE.Mesh || object instanceof THREE.Line) {
             object.geometry.dispose();
             if (Array.isArray(object.material)) {
               object.material.forEach(material => material.dispose());
