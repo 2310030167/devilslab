@@ -84,7 +84,7 @@ html {
   }
 
   .section-title {
-      @apply text-6xl font-bold text-center mb-6 text-gradient;
+      @apply text-6xl font-bold text-center mb-6 text-gradient pb-4;
   }
 
   .section-subtitle {
@@ -145,4 +145,13 @@ html {
 
 .timeline-item:nth-child(odd) .timeline-content {
     margin-right: auto;
+}
+
+/* DNDX Page Specific Styles */
+.section-title-dndx {
+    @apply text-5xl font-bold text-center mb-6 text-white;
+}
+
+.section-subtitle-dndx {
+    @apply text-xl text-muted-foreground mb-16 max-w-3xl mx-auto text-center;
 }

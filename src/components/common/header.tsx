@@ -23,10 +23,10 @@ export default function Header() {
     { href: '/projects', label: 'Projects' },
     { href: '/research', label: 'Research' },
     { href: '/process', label: 'Our Process' },
+    { href: '/dndx', label: 'DNDX' },
     { href: '/forum', label: 'Forum' },
     { href: '/#careers', label: 'Careers' },
     { href: '/#about', label: 'About' },
-    { href: '/team', label: 'Our Team' },
     { href: '/#contact', label: 'Contact' },
   ];
 
@@ -65,14 +65,30 @@ export default function Header() {
   return (
     <header className={cn(
       "fixed top-0 left-0 right-0 z-[1000] py-6 px-8 flex justify-between items-center transition-all duration-300 ease-in-out",
-      isScrolled ? "bg-white/95 shadow-lg backdrop-blur-md" : "bg-transparent"
+      isScrolled ? "bg-white/95 shadow-lg backdrop-blur-md" : "bg-transparent",
+      pathname === '/dndx' && "bg-transparent"
     )}>
-      <Link href="/" className="text-2xl font-bold text-primary tracking-[0.1em]">
+      <Link href="/" className={cn(
+        "text-2xl font-bold text-primary tracking-[0.1em]",
+        pathname === '/dndx' && "text-white"
+        )}>
         DevilsLab
       </Link>
       <nav className="hidden md:flex gap-8 items-center">
         {navLinks.map((link) => (
-          <NavLink key={link.href} href={link.href} label={link.label} />
+          <Link
+            key={link.href}
+            href={link.href}
+            className={cn(
+              "transition-colors duration-300 relative",
+              pathname === '/dndx' ? "text-gray-300 hover:text-white" : "text-primary hover:text-accent",
+              "after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 hover:after:w-full",
+              (pathname === link.href) && "text-accent font-semibold after:w-full",
+              (pathname === '/dndx' && pathname === link.href) && "text-purple-400 font-semibold after:w-full after:bg-purple-400"
+            )}
+          >
+            {link.label}
+          </Link>
         ))}
         <Button asChild className="rounded-full px-8 py-6 text-base font-semibold shadow-lg hover:shadow-xl transition-shadow transform hover:-translate-y-0.5">
           <a href="/#contact">Start a Project</a>
