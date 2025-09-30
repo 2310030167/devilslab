@@ -4,6 +4,11 @@
 
 html {
   scroll-behavior: smooth;
+  cursor: none;
+}
+
+html a, html button {
+  cursor: none;
 }
 
 @layer base {
@@ -154,4 +159,31 @@ html {
 
 .section-subtitle-dndx {
     @apply text-xl text-muted-foreground mb-16 max-w-3xl mx-auto text-center;
+}
+
+/* Custom Cursor */
+.cursor {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background-color: hsl(var(--primary));
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    z-index: 10001;
+}
+
+.cursor.hover {
+    width: 40px;
+    height: 40px;
+    background-color: hsla(var(--primary), 0.3);
+}
+
+.cursor.dark-bg {
+    background-color: hsl(var(--primary-foreground));
+}
+
+.cursor.dark-bg.hover {
+    background-color: hsla(var(--primary-foreground), 0.3);
 }

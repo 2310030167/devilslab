@@ -1,67 +1,47 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 import Preloader from "@/components/common/preloader";
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
-function ClientOnly({ children }: { children: React.ReactNode }) {
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
-  if (!hasMounted) {
-    return null;
-  }
-
-  return <>{children}</>;
-}
-
+import CustomCursor from "@/components/common/custom-cursor";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isPreloading, setIsPreloading] = useState(true);
 
   useEffect(() => {
-    // This function will be called by the Preloader component when its animation is finished
-    const handleLoadingComplete = () => {
-      setIsLoaded(true);
-      document.body.style.overflow = '';
-    };
-
-    // Prevent scrolling while preloader is active
-    document.body.style.overflow = 'hidden';
-
-    // A slight delay to ensure all content is ready before starting the preloader animation
-    const timer = setTimeout(() => {
-      // The Preloader component will call this function
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
+    if (isLoaded) {
+      setTimeout(() => {
+        setIsPreloading(false);
+      }, 500);
+    }
+  }, [isLoaded]);
 
   return (
     <>
-      <Preloader onLoaded={() => {
-        setIsLoaded(true);
-        if (typeof window !== "undefined") {
-          document.body.style.overflow = '';
-        }
-      }} />
-      <ClientOnly>
-        <div style={{ opacity: isLoaded ? 1 : 0, transition: 'opacity 0.5s' }}>
-          <Header />
+      <CustomCursor />
+      <AnimatePresence mode="wait">
+        {isPreloading && <Preloader onLoaded={() => setIsLoaded(true)} />}
+      </AnimatePresence>
+      
+      <Header />
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={pathname}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+        >
           <main>{children}</main>
           <Footer />
-        </div>
-      </ClientOnly>
+        </motion.div>
+      </AnimatePresence>
     </>
   );
 }

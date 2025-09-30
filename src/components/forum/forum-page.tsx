@@ -31,6 +31,7 @@ const ForumHero = () => {
 const ComingSoonSection = () => {
     const sectionRef = useRef<HTMLElement>(null);
     useEffect(() => {
+        if (!sectionRef.current) return;
         gsap.fromTo(sectionRef.current, { opacity: 0, y: 50 }, {
             scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
             opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'
@@ -122,6 +123,7 @@ const StatItem = ({ number, label }: { number: string, label: string }) => (
 const StatsSection = () => {
     const sectionRef = useRef<HTMLElement>(null);
     useEffect(() => {
+        if (!sectionRef.current) return;
         gsap.utils.toArray('.stat-item').forEach((item, i) => {
             gsap.fromTo(item as HTMLElement, { opacity: 0, y: 50 }, {
                 scrollTrigger: { trigger: item as HTMLElement, start: 'top 85%' },

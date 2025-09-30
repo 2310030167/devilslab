@@ -14,6 +14,10 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
+
 const HeroSection = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
 
@@ -85,9 +89,10 @@ const ServicesSection = () => {
     const sectionRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
+        if (!sectionRef.current) return;
         const ctx = gsap.context(() => {
             gsap.fromTo('.section-title, .section-subtitle', { opacity: 0, y: 50 }, {
-                scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' },
+                scrollTrigger: { trigger: sectionRef.current!, start: 'top 80%' },
                 opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: 'power2.out'
             });
             gsap.utils.toArray('.service-card').forEach((card, i) => {
