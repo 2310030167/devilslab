@@ -39,13 +39,12 @@ export default function TestimonialsSection() {
   )
 
   return (
-    <section id="testimonials" className="py-32 px-8 bg-gray-50">
-        <h2 className="section-title">Trusted by Innovators</h2>
+    <section id="testimonials" className="py-24 md:py-32 px-4 md:px-8 bg-gray-50">
         <p className="section-subtitle">Our clients' success is our greatest metric. Here's what they have to say.</p>
         
         <Carousel
             plugins={[plugin.current]}
-            className="w-full max-w-4xl mx-auto"
+            className="w-full max-w-4xl mx-auto mt-12"
             opts={{
                 loop: true,
             }}
