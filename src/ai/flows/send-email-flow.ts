@@ -47,16 +47,21 @@ const sendEmailFlow = ai.defineFlow(
     outputSchema: SendContactMessageOutputSchema,
   },
   async (input) => {
-    const { text } = await emailPrompt(input);
-    
-    // In a real application, you would integrate with an email sending service
-    // like SendGrid, Mailgun, or AWS SES here to send the email.
-    // For this prototype, we'll just log the email content to the console.
-    console.log("----- EMAIL TO BE SENT -----");
-    console.log(text);
-    console.log("--------------------------");
+    try {
+      const { text } = await emailPrompt(input);
+      
+      // In a real application, you would integrate with an email sending service
+      // like SendGrid, Mailgun, or AWS SES here to send the email.
+      // For this prototype, we'll just log the email content to the console.
+      console.log("----- EMAIL TO BE SENT -----");
+      console.log(text);
+      console.log("--------------------------");
 
-    return { success: true };
+      return { success: true };
+    } catch (error) {
+        console.error("Error in sendEmailFlow:", error);
+        return { success: false };
+    }
   }
 );
 
@@ -64,3 +69,5 @@ const sendEmailFlow = ai.defineFlow(
 export async function sendContactMessage(input: SendContactMessageInput): Promise<SendContactMessageOutput> {
   return sendEmailFlow(input);
 }
+
+    

@@ -251,11 +251,15 @@ const ContactSection = () => {
         setIsSubmitting(true);
         try {
             const result = await sendContactMessage(values);
-            toast({
-                title: "Message Sent!",
-                description: "Thank you for reaching out. We'll get back to you shortly.",
-            });
-            form.reset();
+            if (result.success) {
+                toast({
+                    title: "Message Sent!",
+                    description: "Thank you for reaching out. We'll get back to you shortly.",
+                });
+                form.reset();
+            } else {
+                 throw new Error("Flow returned success: false");
+            }
         } catch (error) {
             console.error("Failed to send message:", error);
             toast({
@@ -282,7 +286,7 @@ const ContactSection = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormControl>
-                                            <Input placeholder="Your Name" {...field} className="py-6" />
+                                            <Input placeholder="Your Name" {...field} className="py-6" suppressHydrationWarning />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -294,7 +298,7 @@ const ContactSection = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormControl>
-                                            <Input type="email" placeholder="Your Email" {...field} className="py-6" />
+                                            <Input type="email" placeholder="Your Email" {...field} className="py-6" suppressHydrationWarning />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -306,13 +310,13 @@ const ContactSection = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormControl>
-                                            <Textarea placeholder="Your Message" rows={5} {...field} />
+                                            <Textarea placeholder="Your Message" rows={5} {...field} suppressHydrationWarning />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
-                            <Button type="submit" size="lg" className="w-full rounded-full py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1" disabled={isSubmitting}>
+                            <Button type="submit" size="lg" className="w-full rounded-full py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1" disabled={isSubmitting} suppressHydrationWarning>
                                 {isSubmitting ? <Loader2 className="animate-spin" /> : "Send Message"}
                             </Button>
                         </form>
@@ -353,3 +357,5 @@ export default function HomePage() {
     </>
   );
 }
+
+    
