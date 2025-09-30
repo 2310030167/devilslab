@@ -183,11 +183,11 @@ export default function DndxPage() {
                 <div className="dndx-hero-content relative z-10 max-w-5xl px-8">
                     <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">Dendrites (DNDX)</h1>
                     <p className="text-xl md:text-2xl text-gray-300/80 mb-12">The AI-Powered Trust Layer for Web3.</p>
-                    <div className="flex justify-center gap-4">
-                        <Button size="lg" className="rounded-full px-10 py-7 text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/20 transition-all transform hover:-translate-y-1">
+                    <div className="flex flex-col md:flex-row justify-center gap-4">
+                        <Button size="lg" className="rounded-full w-full md:w-auto px-10 py-7 text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/20 transition-all transform hover:-translate-y-1">
                             Join The Presale
                         </Button>
-                        <Button variant="outline" size="lg" className="rounded-full px-10 py-7 text-lg font-semibold border-purple-400/50 text-purple-300 hover:bg-purple-400/10 hover:text-white transition-all transform hover:-translate-y-1">
+                        <Button variant="outline" size="lg" className="rounded-full w-full md:w-auto px-10 py-7 text-lg font-semibold border-purple-400/50 text-purple-300 hover:bg-purple-400/10 hover:text-white transition-all transform hover:-translate-y-1">
                             Read Whitepaper
                         </Button>
                     </div>

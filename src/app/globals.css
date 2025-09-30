@@ -155,3 +155,12 @@ html {
 .section-subtitle-dndx {
     @apply text-lg md:text-xl text-muted-foreground mb-12 md:mb-16 max-w-3xl mx-auto text-center;
 }
+
+@media (max-width: 768px) {
+    .dndx-hero-content h1 {
+        @apply text-4xl;
+    }
+    .dndx-hero-content p {
+        @apply text-lg mb-8;
+    }
+}
