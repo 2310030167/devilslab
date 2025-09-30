@@ -205,7 +205,9 @@ const FaqSection = () => {
         <Accordion type="multiple" className="w-full">
           {faqItems.map((item, index) => (
             <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-gray-200/80 rounded-2xl shadow-lg mb-4 px-6">
-              <AccordionTrigger className="text-lg font-semibold text-left hover:no-underline">
+              <AccordionTrigger 
+                suppressHydrationWarning
+                className="text-lg font-semibold text-left hover:no-underline">
                 {item.question}
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground pt-2">
@@ -228,10 +230,10 @@ const ContactSection = () => {
                 <div className="contact-form">
                     <h3 className="text-3xl font-bold mb-8 text-primary">Send Us a Message</h3>
                     <form className="space-y-6">
-                        <Input type="text" placeholder="Your Name" className="py-6" />
-                        <Input type="email" placeholder="Your Email" className="py-6" />
-                        <Textarea placeholder="Your Message" rows={5} />
-                        <Button type="submit" size="lg" className="w-full rounded-full py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                        <Input suppressHydrationWarning type="text" placeholder="Your Name" className="py-6" />
+                        <Input suppressHydrationWarning type="email" placeholder="Your Email" className="py-6" />
+                        <Textarea suppressHydrationWarning placeholder="Your Message" rows={5} />
+                        <Button suppressHydrationWarning type="submit" size="lg" className="w-full rounded-full py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
                             Send Message
                         </Button>
                     </form>
