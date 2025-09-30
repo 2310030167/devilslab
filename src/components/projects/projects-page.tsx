@@ -33,10 +33,10 @@ const ProjectsPage = () => {
     }, []);
 
     return (
-        <main ref={sectionRef} className="projects-hub py-32 px-8 max-w-screen-xl mx-auto mt-20">
+        <main ref={sectionRef} className="projects-hub py-32 px-4 md:px-8 max-w-screen-xl mx-auto mt-20">
             <div className="hub-header text-center mb-16">
-                <h1 className="text-6xl font-bold mb-6 text-gradient">Our Work</h1>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">We solve complex problems by engineering beautiful and effective digital solutions. Explore our case studies.</p>
+                <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gradient">Our Work</h1>
+                <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">We solve complex problems by engineering beautiful and effective digital solutions. Explore our case studies.</p>
             </div>
             <div className="case-study-grid grid grid-cols-1 md:grid-cols-2 gap-8">
                 {projects.map((project) => (
@@ -50,8 +50,8 @@ const ProjectsPage = () => {
                                 data-ai-hint="logo tech"
                             />
                         </div>
-                        <div className="p-8">
-                            <h3 className="text-2xl font-bold mb-2 text-primary">{project.title}</h3>
+                        <div className="p-6 md:p-8">
+                            <h3 className="text-xl md:text-2xl font-bold mb-2 text-primary">{project.title}</h3>
                             <p className="text-muted-foreground mb-6">{project.tagline}</p>
                             <div className="project-tags flex gap-2 flex-wrap mb-6">
                                 {project.tags.map(tag => (

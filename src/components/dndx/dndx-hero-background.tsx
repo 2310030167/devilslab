@@ -3,13 +3,16 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { useIsMobile } from '@/hooks/use-mobile';
+import Image from 'next/image';
 
 export default function DndxHeroBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameId = useRef<number>();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
-    if (!canvasRef.current) return;
+    if (isMobile || !canvasRef.current) return;
 
     let scene: THREE.Scene,
         camera: THREE.PerspectiveCamera,
@@ -164,7 +167,20 @@ export default function DndxHeroBackground() {
       }
       if(renderer) renderer.dispose();
     };
-  }, []);
+  }, [isMobile]);
+
+  if(isMobile) {
+    return (
+      <div className="absolute top-0 left-0 w-full h-full z-0 opacity-20">
+        <Image 
+          src="https://images.unsplash.com/photo-1680530033206-881e0a7e44b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWNoJTIwbG9nb3xlbnwwfHx8fDE3NTg2NzgzNjR8MA&ixlib=rb-4.1.0&q=80&w=1080" 
+          alt="DNDX Logo"
+          fill
+          className="object-cover"
+        />
+      </div>
+    );
+  }
 
   return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full z-0" />;
 }

@@ -37,10 +37,10 @@ const TeamPage = () => {
     }, []);
 
     return (
-        <main ref={sectionRef} className="team-page py-32 px-8 max-w-screen-xl mx-auto mt-20">
+        <main ref={sectionRef} className="team-page py-32 px-4 md:px-8 max-w-screen-xl mx-auto mt-20">
             <div className="team-header text-center mb-16">
-                <h1 className="text-6xl font-bold mb-6 text-gradient">The Innovators Behind The Code</h1>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gradient">The Innovators Behind The Code</h1>
+                <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
                     We are a collective of researchers, engineers, and entrepreneurs united by a passion for solving complex challenges and building the future of the digital world.
                 </p>
             </div>

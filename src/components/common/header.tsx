@@ -60,11 +60,11 @@ export default function Header() {
     <header className={cn(
       "fixed top-0 left-0 right-0 z-[1000] py-4 px-4 sm:px-8 flex justify-between items-center transition-all duration-300 ease-in-out",
       isScrolled ? "bg-white/80 shadow-lg backdrop-blur-md" : "bg-transparent",
-      pathname === '/dndx' && "bg-transparent border-b border-white/10"
+      pathname === '/dndx' && !isScrolled && "bg-transparent border-b border-white/10"
     )}>
       <Link href="/" className={cn(
         "text-2xl font-bold tracking-[0.1em]",
-        pathname === '/dndx' ? "text-white" : "text-primary"
+        pathname === '/dndx' && !isScrolled ? "text-white" : "text-primary"
         )}>
         DevilsLab
       </Link>
@@ -83,7 +83,7 @@ export default function Header() {
       <div className="md:hidden">
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className={cn(pathname === '/dndx' ? "text-white" : "text-primary")}>
+            <Button variant="ghost" size="icon" className={cn(pathname === '/dndx' && !isScrolled ? "text-white" : "text-primary")}>
               <Menu size={24} />
               <span className="sr-only">Open menu</span>
             </Button>

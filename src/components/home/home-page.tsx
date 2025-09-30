@@ -16,7 +16,7 @@ import { Bot, Link2, Code, Briefcase, BarChart, BookOpen, Mail, Phone, MapPin, L
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
 import { sendContactMessage, type SendContactMessageInput } from '@/ai/flows/send-email-flow';
 
@@ -213,7 +213,6 @@ const FaqSection = () => {
           {faqItems.map((item, index) => (
             <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-gray-200/80 rounded-2xl shadow-lg mb-4 px-4 md:px-6">
               <AccordionTrigger 
-                suppressHydrationWarning
                 className="text-base md:text-lg font-semibold text-left hover:no-underline text-primary">
                 {item.question}
               </AccordionTrigger>
@@ -286,7 +285,7 @@ const ContactSection = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormControl>
-                                            <Input placeholder="Your Name" {...field} className="py-6" suppressHydrationWarning />
+                                            <Input placeholder="Your Name" {...field} className="py-6" />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -298,7 +297,7 @@ const ContactSection = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormControl>
-                                            <Input type="email" placeholder="Your Email" {...field} className="py-6" suppressHydrationWarning />
+                                            <Input type="email" placeholder="Your Email" {...field} className="py-6" />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -310,13 +309,13 @@ const ContactSection = () => {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormControl>
-                                            <Textarea placeholder="Your Message" rows={5} {...field} suppressHydrationWarning />
+                                            <Textarea placeholder="Your Message" rows={5} {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
-                            <Button type="submit" size="lg" className="w-full rounded-full py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1" disabled={isSubmitting} suppressHydrationWarning>
+                            <Button type="submit" size="lg" className="w-full rounded-full py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1" disabled={isSubmitting}>
                                 {isSubmitting ? <Loader2 className="animate-spin" /> : "Send Message"}
                             </Button>
                         </form>
