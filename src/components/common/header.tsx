@@ -109,7 +109,7 @@ export default function Header() {
                         href={link.href}
                         className={cn(
                           "text-xl font-medium text-primary hover:bg-gray-100 rounded-md p-4 transition-colors",
-                          (pathname === link.href || (pathname.startsWith('/projects') && href === '/projects')) && "bg-gray-100 text-accent font-semibold"
+                          (pathname === link.href || (pathname.startsWith('/projects') && link.href === '/projects')) && "bg-gray-100 text-accent font-semibold"
                         )}
                       >
                         {link.label}
