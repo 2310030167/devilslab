@@ -57,10 +57,10 @@ const HeroSection = () => {
         <h1 ref={titleRef} className="hero-title text-black/70 font-medium tracking-[0.05em] mb-8 text-[clamp(1.5rem,3vw,2.5rem)]">
             ENGINEERING DIGITAL REALITIES
         </h1>
-        <p className="hero-subtitle text-xl text-muted-foreground mb-12">
+        <p className="hero-subtitle text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
             DevilsLab pioneers AI solutions, Web3 innovation, business transformation, and cutting-edge research to shape the digital future.
         </p>
-        <Button asChild size="lg" className="hero-cta rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+        <Button asChild size="lg" className="hero-cta rounded-full px-8 md:px-10 py-6 md:py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
             <Link href="/projects">Explore Our Work</Link>
         </Button>
       </div>
@@ -69,16 +69,16 @@ const HeroSection = () => {
 };
 
 const MarqueeSection = () => (
-    <div className="bg-primary py-8 overflow-hidden whitespace-nowrap border-y border-primary/20">
+    <div className="bg-primary py-6 md:py-8 overflow-hidden whitespace-nowrap border-y border-primary/20">
         <div className="marquee-content">
             {Array(2).fill(0).map((_, i) => (
                  <div key={i} className="inline-block">
-                    <span className="text-3xl font-bold mx-8 text-white tracking-[0.1em]">AI INNOVATION</span>
-                    <span className="text-3xl font-bold mx-8 text-white tracking-[0.1em]">WEB3 DEVELOPMENT</span>
-                    <span className="text-3xl font-bold mx-8 text-white tracking-[0.1em]">BUSINESS SOLUTIONS</span>
-                    <span className="text-3xl font-bold mx-8 text-white tracking-[0.1em]">RESEARCH PAPERS</span>
-                    <span className="text-3xl font-bold mx-8 text-white tracking-[0.1em]">MARKETING STRATEGY</span>
-                    <span className="text-3xl font-bold mx-8 text-white tracking-[0.1em]">DIGITAL TRANSFORMATION</span>
+                    <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">AI INNOVATION</span>
+                    <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">WEB3 DEVELOPMENT</span>
+                    <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">BUSINESS SOLUTIONS</span>
+                    <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">RESEARCH PAPERS</span>
+                    <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">MARKETING STRATEGY</span>
+                    <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">DIGITAL TRANSFORMATION</span>
                  </div>
             ))}
         </div>
@@ -123,7 +123,7 @@ const ServicesSection = () => {
     ];
 
     return (
-        <section ref={sectionRef} id="services" className="relative py-32 px-8 bg-gray-50 overflow-hidden">
+        <section ref={sectionRef} id="services" className="relative py-24 md:py-32 px-4 md:px-8 bg-gray-50 overflow-hidden">
             <ServicesBackground />
             <div className="relative z-10">
                 <h2 className="section-title">Our Core Services</h2>
@@ -138,14 +138,14 @@ const ServicesSection = () => {
 
 const CareersSection = () => {
     return (
-        <section id="careers" className="py-32 px-8 bg-gray-50">
+        <section id="careers" className="py-24 md:py-32 px-4 md:px-8 bg-gray-50">
             <div className="max-w-screen-xl mx-auto text-center">
-                <h2 className="text-6xl font-bold mb-6 text-gradient">Join Our Team</h2>
-                <p className="text-xl text-muted-foreground mb-16">Build the future of digital experiences with us at DevilsLab</p>
-                <div className="bg-white border border-gray-200 rounded-2xl shadow-xl p-12 max-w-3xl mx-auto">
-                    <h3 className="text-3xl text-primary font-bold mb-4">No Open Positions Currently</h3>
-                    <p className="text-muted-foreground mb-8 text-lg">We don't have any open positions at the moment, but we're always interested in connecting with talented individuals who share our passion for innovation.</p>
-                    <Button asChild size="lg" className="rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                <h2 className="section-title">Join Our Team</h2>
+                <p className="section-subtitle">Build the future of digital experiences with us at DevilsLab</p>
+                <div className="bg-white border border-gray-200 rounded-2xl shadow-xl p-8 md:p-12 max-w-3xl mx-auto">
+                    <h3 className="text-2xl md:text-3xl text-primary font-bold mb-4">No Open Positions Currently</h3>
+                    <p className="text-muted-foreground mb-8 text-base md:text-lg">We don't have any open positions at the moment, but we're always interested in connecting with talented individuals who share our passion for innovation.</p>
+                    <Button asChild size="lg" className="rounded-full px-8 md:px-10 py-6 md:py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
                         <a href="mailto:careers@devilslab.io">Send Your Portfolio</a>
                     </Button>
                 </div>
@@ -157,14 +157,14 @@ const CareersSection = () => {
 const AboutSection = () => {
     const dndxImage = PlaceHolderImages.find(img => img.id === 'dndx-logo');
     return (
-        <section id="about" className="py-32 px-8">
-            <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        <section id="about" className="py-24 md:py-32 px-4 md:px-8">
+            <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
                 <div>
-                    <h2 className="text-5xl font-bold mb-8 text-gradient text-left">Engineering Digital Realities</h2>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gradient text-left">Engineering Digital Realities</h2>
                     <p className="text-lg text-muted-foreground mb-6 leading-relaxed">DevilsLab is a collective of visionary engineers, researchers, and strategists dedicated to pushing the boundaries of technology. We partner with ambitious startups and enterprises to architect and build the next generation of digital products.</p>
                     <p className="text-lg text-muted-foreground leading-relaxed">Our mission is to translate complex challenges into elegant, scalable, and impactful solutions. From intelligent AI systems to decentralized Web3 platforms, we are committed to delivering excellence and shaping a smarter, more connected future.</p>
                 </div>
-                <div className="h-[400px] bg-gradient-to-br from-[#F8F9FA] to-[#E9ECEF] rounded-2xl flex items-center justify-center relative overflow-hidden border border-black/10 shadow-2xl p-8">
+                <div className="h-[300px] md:h-[400px] bg-gradient-to-br from-[#F8F9FA] to-[#E9ECEF] rounded-2xl flex items-center justify-center relative overflow-hidden border border-black/10 shadow-2xl p-8">
                     {dndxImage && (
                         <Image
                             src={dndxImage.imageUrl}
@@ -172,7 +172,7 @@ const AboutSection = () => {
                             width={400}
                             height={400}
                             data-ai-hint={dndxImage.imageHint}
-                            className="object-cover w-full h-full"
+                            className="object-contain w-full h-full"
                         />
                     )}
                 </div>
@@ -206,16 +206,16 @@ const FaqSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-32 px-8 bg-gray-50">
+    <section id="faq" className="py-24 md:py-32 px-4 md:px-8 bg-gray-50">
       <h2 className="section-title">Frequently Asked Questions</h2>
       <p className="section-subtitle">Have questions? We have answers. Find the most common inquiries below.</p>
       <div className="max-w-4xl mx-auto">
         <Accordion type="multiple" className="w-full">
           {faqItems.map((item, index) => (
-            <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-gray-200/80 rounded-2xl shadow-lg mb-4 px-6">
+            <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-gray-200/80 rounded-2xl shadow-lg mb-4 px-4 md:px-6">
               <AccordionTrigger 
                 suppressHydrationWarning
-                className="text-lg font-semibold text-left hover:no-underline">
+                className="text-base md:text-lg font-semibold text-left hover:no-underline text-primary">
                 {item.question}
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground pt-2">
@@ -273,12 +273,12 @@ const ContactSection = () => {
         }
     }
     return (
-        <section id="contact" className="py-32 px-8 bg-gray-50">
+        <section id="contact" className="py-24 md:py-32 px-4 md:px-8 bg-gray-50">
             <h2 className="section-title">Get In Touch</h2>
             <p className="section-subtitle">Have an idea? Let's build the future together.</p>
-            <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-16 bg-white p-12 rounded-2xl shadow-2xl border border-gray-200/80">
+            <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-8 md:gap-16 bg-white p-6 md:p-12 rounded-2xl shadow-2xl border border-gray-200/80">
                 <div className="contact-form">
-                    <h3 className="text-3xl font-bold mb-8 text-primary">Send Us a Message</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-8 text-primary">Send Us a Message</h3>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                             <FormField
@@ -323,19 +323,19 @@ const ContactSection = () => {
                         </form>
                     </Form>
                 </div>
-                <div className="contact-info bg-primary text-white p-12 rounded-2xl flex flex-col justify-center">
-                    <h3 className="text-3xl font-bold mb-8">Contact Information</h3>
-                    <div className="space-y-6 text-lg">
-                        <div className="flex items-center gap-4">
-                            <Mail size={24} />
-                            <a href="mailto:hello@devilslab.io" className="hover:underline">hello@devilslab.io</a>
+                <div className="contact-info bg-primary text-white p-8 md:p-12 rounded-2xl flex flex-col justify-center">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-8">Contact Information</h3>
+                    <div className="space-y-6 text-base md:text-lg">
+                        <div className="flex items-start gap-4">
+                            <Mail size={24} className="mt-1 flex-shrink-0" />
+                            <a href="mailto:hello@devilslab.io" className="hover:underline break-all">hello@devilslab.io</a>
                         </div>
-                        <div className="flex items-center gap-4">
-                            <Phone size={24} />
+                        <div className="flex items-start gap-4">
+                            <Phone size={24} className="mt-1 flex-shrink-0" />
                             <a href="tel:+91000000000" className="hover:underline">+91 000 000 0000</a>
                         </div>
-                        <div className="flex items-center gap-4">
-                            <MapPin size={24} />
+                        <div className="flex items-start gap-4">
+                            <MapPin size={24} className="mt-1 flex-shrink-0" />
                             <span>Hyderabad, India</span>
                         </div>
                     </div>

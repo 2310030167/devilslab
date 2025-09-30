@@ -10,11 +10,11 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
+  SheetClose
 } from "@/components/ui/sheet";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -24,10 +24,6 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [pathname]);
 
   const navLinks = [
     { href: '/#services', label: 'Services' },
@@ -85,45 +81,50 @@ export default function Header() {
 
       {/* Mobile Navigation */}
       <div className="md:hidden">
-        <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+        <Sheet>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" className={cn(pathname === '/dndx' ? "text-white" : "text-primary")}>
               <Menu size={24} />
               <span className="sr-only">Open menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="bg-white p-6 w-[80vw]">
+          <SheetContent side="right" className="bg-white p-0 w-full max-w-sm">
             <div className="flex flex-col h-full">
-              <div className="flex justify-between items-center mb-8">
+              <div className="flex justify-between items-center p-6 border-b">
                  <Link href="/" className="text-xl font-bold text-primary tracking-[0.1em]">
                     DevilsLab
                  </Link>
-                 <SheetTrigger asChild>
+                 <SheetClose asChild>
                     <Button variant="ghost" size="icon">
                         <X size={24} />
                         <span className="sr-only">Close menu</span>
                     </Button>
-                 </SheetTrigger>
+                 </SheetClose>
               </div>
 
-              <nav className="flex flex-col gap-6">
+              <nav className="flex flex-col gap-2 p-6">
                 {navLinks.map((link) => (
-                   <Link
-                      key={link.href}
-                      href={link.href}
-                      className={cn(
-                        "text-2xl font-medium text-primary hover:text-accent transition-colors",
-                        pathname === link.href && "text-accent"
-                      )}
-                    >
-                      {link.label}
-                    </Link>
+                   <SheetClose asChild key={link.href}>
+                     <Link
+                        href={link.href}
+                        className={cn(
+                          "text-xl font-medium text-primary hover:bg-gray-100 rounded-md p-4 transition-colors",
+                          (pathname === link.href || (pathname.startsWith('/projects') && href === '/projects')) && "bg-gray-100 text-accent font-semibold"
+                        )}
+                      >
+                        {link.label}
+                      </Link>
+                   </SheetClose>
                 ))}
               </nav>
 
-              <Button asChild className="mt-auto rounded-full w-full py-6 text-lg font-semibold">
-                <a href="/#contact">Start a Project</a>
-              </Button>
+              <div className="mt-auto p-6 border-t">
+                <SheetClose asChild>
+                  <Button asChild className="w-full rounded-full py-6 text-lg font-semibold">
+                    <a href="/#contact">Start a Project</a>
+                  </Button>
+                </SheetClose>
+              </div>
             </div>
           </SheetContent>
         </Sheet>
