@@ -11,7 +11,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import HeroBackground from './hero-background';
 import ServicesBackground from './services-background';
-import TestimonialsSection from './testimonials-section';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Bot, Link2, Code, Briefcase, BarChart, BookOpen, Mail, Phone, MapPin, Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
@@ -351,7 +350,6 @@ export default function HomePage() {
       <HeroSection />
       <MarqueeSection />
       <ServicesSection />
-      <TestimonialsSection />
       <CareersSection />
       <AboutSection />
       <FaqSection />
