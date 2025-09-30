@@ -11,6 +11,21 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+function ClientOnly({ children }: { children: React.ReactNode }) {
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) {
+    return null;
+  }
+
+  return <>{children}</>;
+}
+
+
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -40,11 +55,13 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           document.body.style.overflow = '';
         }
       }} />
-      <div style={{ opacity: isLoaded ? 1 : 0, transition: 'opacity 0.5s' }}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-      </div>
+      <ClientOnly>
+        <div style={{ opacity: isLoaded ? 1 : 0, transition: 'opacity 0.5s' }}>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </div>
+      </ClientOnly>
     </>
   );
 }
