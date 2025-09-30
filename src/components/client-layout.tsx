@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import Preloader from "@/components/common/preloader";
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
-import CustomCursor from "@/components/common/custom-cursor";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -23,7 +22,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <>
-      <CustomCursor />
       <AnimatePresence mode="wait">
         {isPreloading && <Preloader onLoaded={() => setIsLoaded(true)} />}
       </AnimatePresence>
