@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
@@ -9,10 +12,14 @@ import Image from 'next/image';
 import HeroBackground from './hero-background';
 import ServicesBackground from './services-background';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Bot, Link2, Code, Briefcase, BarChart, BookOpen, Mail, Phone, MapPin } from 'lucide-react';
+import { Bot, Link2, Code, Briefcase, BarChart, BookOpen, Mail, Phone, MapPin, Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { useToast } from '@/hooks/use-toast';
+import { sendContactMessage, type SendContactMessageInput } from '@/ai/flows/send-email-flow';
+
 
 if (typeof window !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
@@ -221,7 +228,45 @@ const FaqSection = () => {
   );
 };
 
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+});
+
 const ContactSection = () => {
+    const { toast } = useToast();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            name: "",
+            email: "",
+            message: "",
+        },
+    });
+
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        setIsSubmitting(true);
+        try {
+            const result = await sendContactMessage(values);
+            toast({
+                title: "Message Sent!",
+                description: "Thank you for reaching out. We'll get back to you shortly.",
+            });
+            form.reset();
+        } catch (error) {
+            console.error("Failed to send message:", error);
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Something went wrong.",
+                description: "There was a problem sending your message. Please try again later.",
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
+    }
     return (
         <section id="contact" className="py-32 px-8 bg-gray-50">
             <h2 className="section-title">Get In Touch</h2>
@@ -229,14 +274,49 @@ const ContactSection = () => {
             <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-16 bg-white p-12 rounded-2xl shadow-2xl border border-gray-200/80">
                 <div className="contact-form">
                     <h3 className="text-3xl font-bold mb-8 text-primary">Send Us a Message</h3>
-                    <form className="space-y-6">
-                        <Input suppressHydrationWarning type="text" placeholder="Your Name" className="py-6" />
-                        <Input suppressHydrationWarning type="email" placeholder="Your Email" className="py-6" />
-                        <Textarea suppressHydrationWarning placeholder="Your Message" rows={5} />
-                        <Button suppressHydrationWarning type="submit" size="lg" className="w-full rounded-full py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
-                            Send Message
-                        </Button>
-                    </form>
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                            <FormField
+                                control={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormControl>
+                                            <Input placeholder="Your Name" {...field} className="py-6" />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                             <FormField
+                                control={form.control}
+                                name="email"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormControl>
+                                            <Input type="email" placeholder="Your Email" {...field} className="py-6" />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                             <FormField
+                                control={form.control}
+                                name="message"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormControl>
+                                            <Textarea placeholder="Your Message" rows={5} {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <Button type="submit" size="lg" className="w-full rounded-full py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1" disabled={isSubmitting}>
+                                {isSubmitting ? <Loader2 className="animate-spin" /> : "Send Message"}
+                            </Button>
+                        </form>
+                    </Form>
                 </div>
                 <div className="contact-info bg-primary text-white p-12 rounded-2xl flex flex-col justify-center">
                     <h3 className="text-3xl font-bold mb-8">Contact Information</h3>
