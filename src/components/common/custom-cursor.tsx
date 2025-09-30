@@ -38,7 +38,7 @@ export default function CustomCursor() {
                 isHovering = true;
                 cursor.classList.add('hover');
             }
-            if (target.closest('.bg-primary') || target.closest('.bg-[#101010]') || target.closest('.bg-[#0A0A14]')) {
+            if (target.closest('.bg-primary') || target.closest('.bg-\\[\\#101010\\]') || target.closest('.bg-\\[\\#0A0A14\\]')) {
                 cursor.classList.add('dark-bg');
             }
         };
@@ -49,7 +49,7 @@ export default function CustomCursor() {
                 isHovering = false;
                 cursor.classList.remove('hover');
             }
-            if (target.closest('.bg-primary') || target.closest('.bg-[#101010]') || target.closest('.bg-[#0A0A14]')) {
+             if (target.closest('.bg-primary') || target.closest('.bg-\\[\\#101010\\]') || target.closest('.bg-\\[\\#0A0A14\\]')) {
                 cursor.classList.remove('dark-bg');
             }
         };
