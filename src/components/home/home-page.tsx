@@ -18,7 +18,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
-import { sendContactMessage, type SendContactMessageInput } from '@/ai/flows/send-email-flow';
 
 
 if (typeof window !== 'undefined') {
@@ -212,7 +211,7 @@ const FaqSection = () => {
         <Accordion type="multiple" className="w-full">
           {faqItems.map((item, index) => (
             <AccordionItem key={index} value={`item-${index}`} className="bg-white border border-gray-200/80 rounded-2xl shadow-lg mb-4 px-4 md:px-6">
-              <AccordionTrigger 
+              <AccordionTrigger
                 suppressHydrationWarning
                 className="text-base md:text-lg font-semibold text-left hover:no-underline text-primary">
                 {item.question}
@@ -236,7 +235,6 @@ const formSchema = z.object({
 
 const ContactSection = () => {
     const { toast } = useToast();
-    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -247,29 +245,31 @@ const ContactSection = () => {
         },
     });
 
-    async function onSubmit(values: z.infer<typeof formSchema>) {
-        setIsSubmitting(true);
-        try {
-            const result = await sendContactMessage(values);
-            if (result.success) {
-                toast({
-                    title: "Message Sent!",
-                    description: "Thank you for reaching out. We'll get back to you shortly.",
-                });
-                form.reset();
-            } else {
-                 throw new Error("Flow returned success: false");
-            }
-        } catch (error) {
-            console.error("Failed to send message:", error);
+    function onSubmit(values: z.infer<typeof formSchema>) {
+        const { name, email, message } = values;
+
+        if (!name || !email || !message) {
             toast({
                 variant: "destructive",
                 title: "Uh oh! Something went wrong.",
-                description: "There was a problem sending your message. Please try again later.",
+                description: "Please fill out all fields.",
             });
-        } finally {
-            setIsSubmitting(false);
+            return;
         }
+
+        const recipient = 'eajaz.dev@devilslab.co.in';
+        const subject = `Message from ${name} via DevilsLab Website`;
+        const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+
+        const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
+        window.location.href = mailtoLink;
+
+        toast({
+            title: "Redirecting to your email client!",
+            description: "Please complete sending the email from your mail application.",
+        });
+        form.reset();
     }
     return (
         <section id="contact" className="py-24 md:py-32 px-4 md:px-8 bg-gray-50">
@@ -316,8 +316,8 @@ const ContactSection = () => {
                                     </FormItem>
                                 )}
                             />
-                            <Button suppressHydrationWarning type="submit" size="lg" className="w-full rounded-full py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1" disabled={isSubmitting}>
-                                {isSubmitting ? <Loader2 className="animate-spin" /> : "Send Message"}
+                            <Button suppressHydrationWarning type="submit" size="lg" className="w-full rounded-full py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                                Send Message
                             </Button>
                         </form>
                     </Form>
@@ -327,11 +327,11 @@ const ContactSection = () => {
                     <div className="space-y-6 text-base md:text-lg">
                         <div className="flex items-start gap-4">
                             <Mail size={24} className="mt-1 flex-shrink-0" />
-                            <a href="mailto:hello@devilslab.io" className="hover:underline break-all">hello@devilslab.io</a>
+                            <a href="mailto:eajaz.dev@devilslab.co.in" className="hover:underline break-all">eajaz.dev@devilslab.co.in</a>
                         </div>
                         <div className="flex items-start gap-4">
                             <Phone size={24} className="mt-1 flex-shrink-0" />
-                            <a href="tel:+91000000000" className="hover:underline">+91 000 000 0000</a>
+                            <a href="tel:+919100360159" className="hover:underline">+91 9100360159</a>
                         </div>
                         <div className="flex items-start gap-4">
                             <MapPin size={24} className="mt-1 flex-shrink-0" />
