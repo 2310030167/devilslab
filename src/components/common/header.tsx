@@ -58,7 +58,7 @@ export default function Header() {
 
   return (
     <header className={cn(
-      "fixed top-0 left-0 right-0 z-[1000] py-4 px-4 sm:px-8 flex justify-between items-center transition-all duration-300 ease-in-out",
+      "fixed top-0 left-0 right-0 z-50 py-4 px-4 sm:px-8 flex justify-between items-center transition-all duration-300 ease-in-out",
       isScrolled ? "bg-white/80 shadow-lg backdrop-blur-md" : "bg-transparent",
       pathname === '/dndx' && !isScrolled && "bg-transparent border-b border-white/10"
     )}>
