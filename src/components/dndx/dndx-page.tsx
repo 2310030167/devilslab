@@ -4,25 +4,67 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
-import { BarChart, AreaChart, PieChart, LineChart } from 'lucide-react';
+import { BarChart, AreaChart, PieChart as PieChartIcon, LineChart } from 'lucide-react';
 import DndxHeroBackground from './dndx-hero-background';
 import { ShieldAlert, PiggyBank, Bot, TrendingUp, Handshake, Network, Briefcase, FileText } from 'lucide-react';
-import { ResponsiveContainer, Pie, PieChart as RechartsPieChart, Line, LineChart as RechartsLineChart, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
-import { ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
+import { ResponsiveContainer, Pie, PieChart, Line, LineChart as RechartsLineChart, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
+import { ChartTooltip, ChartTooltipContent, ChartContainer, ChartConfig } from '@/components/ui/chart';
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
 const pieData = [
-  { name: 'Seed', value: 10, fill: '#8884d8' },
-  { name: 'Private', value: 15, fill: '#82ca9d' },
-  { name: 'Presale', value: 10, fill: '#ffc658' },
-  { name: 'Team', value: 15, fill: '#ff8042' },
-  { name: 'Marketing', value: 10, fill: '#00C49F' },
-  { name: 'Treasury', value: 15, fill: '#0088FE' },
-  { name: 'Ecosystem', value: 25, fill: '#FFBB28' },
+  { name: 'Seed', value: 10, fill: 'var(--color-seed)' },
+  { name: 'Private', value: 15, fill: 'var(--color-private)' },
+  { name: 'Presale', value: 10, fill: 'var(--color-presale)' },
+  { name: 'Team', value: 15, fill: 'var(--color-team)' },
+  { name: 'Marketing', value: 10, fill: 'var(--color-marketing)' },
+  { name: 'Treasury', value: 15, fill: 'var(--color-treasury)' },
+  { name: 'Ecosystem', value: 25, fill: 'var(--color-ecosystem)' },
 ];
+
+const chartConfig = {
+  value: {
+    label: 'DNDX',
+  },
+  seed: {
+    label: 'Seed',
+    color: 'hsl(var(--chart-1))',
+  },
+  private: {
+    label: 'Private',
+    color: 'hsl(var(--chart-2))',
+  },
+  presale: {
+    label: 'Presale',
+    color: 'hsl(var(--chart-3))',
+  },
+  team: {
+    label: 'Team',
+    color: 'hsl(var(--chart-4))',
+  },
+  marketing: {
+    label: 'Marketing',
+    color: 'hsl(var(--chart-5))',
+  },
+  treasury: {
+    label: 'Treasury',
+    color: 'hsl(var(--chart-1))',
+  },
+  ecosystem: {
+    label: 'Ecosystem',
+    color: 'hsl(var(--chart-2))',
+  },
+  Team: {
+    label: 'Team Vesting',
+    color: 'hsl(var(--chart-1))',
+  },
+  VCs: {
+    label: 'VCs Vesting',
+    color: 'hsl(var(--chart-2))',
+  }
+} satisfies ChartConfig;
 
 const lineData = [
   { name: 'Launch', Team: 0, VCs: 0 },
@@ -168,7 +210,7 @@ export default function DndxPage() {
                         <p className="text-gray-400">Navigating global regulations (KYC/AML) is complex and expensive, creating high barriers for legitimate projects.</p>
                     </div>
                     <div className="problem-card bg-gray-900/50 p-8 rounded-2xl border border-orange-500/30 shadow-xl shadow-orange-500/10">
-                         <PieChart className="w-12 h-12 text-orange-400 mb-4" />
+                         <PieChartIcon className="w-12 h-12 text-orange-400 mb-4" />
                         <h3 className="text-2xl font-bold mb-3 text-white">Rigged Presales</h3>
                         <p className="text-gray-400">Bots, insider trading, and unfair launch mechanics prevent genuine community members from early participation.</p>
                     </div>
@@ -228,10 +270,21 @@ export default function DndxPage() {
                     <div className="chart-item bg-gray-900/50 p-8 rounded-2xl border border-gray-700">
                         <h3 className="text-2xl font-bold text-center mb-4 text-white">Token Allocation</h3>
                         <p className="text-center text-gray-400 mb-8">Total Supply: 2,500,000,000 DNDX</p>
-                        <div className="w-full h-80">
-                             <ResponsiveContainer width="100%" height="100%">
-                                <RechartsPieChart>
-                                    <Pie data={pieData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={120} labelLine={false} label={({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+                        <ChartContainer config={chartConfig} className="w-full h-80">
+                            <PieChart>
+                                <ChartTooltip
+                                    cursor={false}
+                                    content={<ChartTooltipContent hideLabel />}
+                                />
+                                <Pie 
+                                    data={pieData} 
+                                    dataKey="value" 
+                                    nameKey="name" 
+                                    cx="50%" 
+                                    cy="50%" 
+                                    outerRadius={120} 
+                                    labelLine={false} 
+                                    label={({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
                                         const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
                                         const x  = cx + radius * Math.cos(-midAngle * (Math.PI / 180));
                                         const y = cy + radius * Math.sin(-midAngle * (Math.PI / 180));
@@ -240,27 +293,24 @@ export default function DndxPage() {
                                                 {`${(percent * 100).toFixed(0)}%`}
                                             </text>
                                         );
-                                    }}/>
-                                    <Tooltip contentStyle={{background: '#1A1A2E', border: '1px solid #4A5568'}}/>
-                                </RechartsPieChart>
-                            </ResponsiveContainer>
-                        </div>
+                                    }}
+                                />
+                            </PieChart>
+                        </ChartContainer>
                     </div>
                     <div className="chart-item bg-gray-900/50 p-8 rounded-2xl border border-gray-700">
                         <h3 className="text-2xl font-bold text-center mb-4 text-white">Vesting Unlock Schedules</h3>
                         <p className="text-center text-gray-400 mb-8">Demonstrating long-term commitment from team and VCs.</p>
-                        <div className="w-full h-80">
-                            <ResponsiveContainer width="100%" height="100%">
-                                <RechartsLineChart data={lineData}>
-                                    <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-                                    <XAxis dataKey="name" stroke="#9CA3AF" />
-                                    <YAxis stroke="#9CA3AF" unit="%" />
-                                    <Tooltip content={<ChartTooltipContent indicator="dot" />} contentStyle={{background: '#1A1A2E', border: '1px solid #4A5568'}} cursor={{fill: 'rgba(138, 43, 226, 0.1)'}}/>
-                                    <Line type="monotone" dataKey="Team" stroke="#8884d8" strokeWidth={2} />
-                                    <Line type="monotone" dataKey="VCs" stroke="#82ca9d" strokeWidth={2} />
-                                </RechartsLineChart>
-                            </ResponsiveContainer>
-                        </div>
+                         <ChartContainer config={chartConfig} className="w-full h-80">
+                            <RechartsLineChart data={lineData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
+                                <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+                                <XAxis dataKey="name" stroke="#9CA3AF" />
+                                <YAxis stroke="#9CA3AF" unit="%" />
+                                <ChartTooltip content={<ChartTooltipContent indicator="dot" />} cursor={{fill: 'rgba(138, 43, 226, 0.1)'}}/>
+                                <Line type="monotone" dataKey="Team" stroke="var(--color-team)" strokeWidth={2} />
+                                <Line type="monotone" dataKey="VCs" stroke="var(--color-VCs)" strokeWidth={2} />
+                            </RechartsLineChart>
+                        </ChartContainer>
                     </div>
                 </div>
             </section>
@@ -303,4 +353,4 @@ export default function DndxPage() {
         </main>
     );
 }
-
+    
