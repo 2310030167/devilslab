@@ -5,6 +5,24 @@
       "description": "DNDX placeholder logo",
       "imageUrl": "https://images.unsplash.com/photo-1680530033206-881e0a7e44b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHx0ZWNoJTIwbG9nb3xlbnwwfHx8fDE3NTg2NzgzNjR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "tech logo"
+    },
+    {
+      "id": "client-sarah",
+      "description": "Headshot of Sarah Chen",
+      "imageUrl": "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8d29tYW4lMjBoZWFkc2hvdHxlbnwwfHx8fDE3NTkyMzg3NjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman headshot"
+    },
+    {
+      "id": "client-michael",
+      "description": "Headshot of Michael Lee",
+      "imageUrl": "https://images.unsplash.com/photo-1651684215020-f7a5b6610f23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtYW4lMjBoZWFkc2hvdHxlbnwwfHx8fDE3NTkyMTI4MDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man headshot"
+    },
+    {
+      "id": "client-jessica",
+      "description": "Headshot of Jessica Brown",
+      "imageUrl": "https://images.unsplash.com/photo-1758599543111-36ce5c34fceb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHx3b21hbiUyMGhlYWRzaG90JTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc1OTI0NDM1OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman headshot professional"
     }
   ]
 }
