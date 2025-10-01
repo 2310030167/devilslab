@@ -77,6 +77,24 @@ html {
     overflow-x: hidden;
     line-height: 1.6;
   }
+  .prose {
+      @apply text-foreground;
+  }
+  .prose strong {
+      @apply text-foreground;
+  }
+  .prose h2 {
+      @apply text-foreground;
+  }
+  .prose-invert {
+      @apply text-gray-300;
+  }
+  .prose-invert strong {
+      @apply text-white;
+  }
+  .prose-invert h2 {
+      @apply text-white;
+  }
 }
 
 @layer components {
@@ -158,15 +176,15 @@ html {
 }
 
 .ecosystem-timeline-item:nth-child(odd) .timeline-content {
-    @apply md:mr-12 lg:mr-16;
+    @apply md:mr-auto;
 }
 
 .ecosystem-timeline-item:nth-child(even) .timeline-content {
-    @apply md:ml-12 lg:ml-16;
+    @apply md:ml-auto;
 }
 
 .ecosystem-timeline-item .timeline-content {
-    @apply md:max-w-none;
+    @apply md:max-w-md;
 }
 
 @media (max-width: 768px) {

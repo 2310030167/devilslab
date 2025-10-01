@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import { useEffect, useRef } from 'react';
@@ -7,7 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
 import { BarChart, AreaChart, PieChart as PieChartIcon, Rocket, Share2 } from 'lucide-react';
 import DndxHeroBackground from './dndx-hero-background';
-import { ShieldAlert, PiggyBank, Bot, TrendingUp, Handshake, Network, Briefcase, FileText, ShieldCheck } from 'lucide-react';
+import { ShieldAlert, PiggyBank, Bot, TrendingUp, Handshake, Network, Briefcase, FileText, ShieldCheck, Search, Users, Vote } from 'lucide-react';
 import { ResponsiveContainer, Pie, PieChart, Line, LineChart as RechartsLineChart, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 import { ChartTooltip, ChartTooltipContent, ChartContainer, ChartConfig } from '@/components/ui/chart';
 
@@ -127,13 +128,18 @@ export default function DndxPage() {
             // Animate sections
             const sections = gsap.utils.toArray<HTMLElement>('.dndx-section');
             sections.forEach(section => {
+                gsap.fromTo(section, { opacity: 0, y: 50 }, {
+                    scrollTrigger: { trigger: section, start: 'top 80%' },
+                    opacity: 1, y: 0, duration: 1, ease: 'power3.out'
+                });
+
                 const q = gsap.utils.selector(section);
                 gsap.fromTo(q('.section-title-dndx, .section-subtitle-dndx'), { opacity: 0, y: 50 }, {
                     scrollTrigger: { trigger: section, start: 'top 80%' },
                     opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: 'power3.out'
                 });
             });
-
+            
             // Problem Section Cards
             gsap.utils.toArray<HTMLElement>('.problem-card').forEach((card, i) => {
                 gsap.fromTo(card, { opacity: 0, y: 50, scale: 0.95 }, {
@@ -192,7 +198,7 @@ export default function DndxPage() {
                     const isEven = index % 2 === 0;
 
                     gsap.fromTo(content, 
-                        { x: window.innerWidth < 768 ? '0' : (isEven ? '-100%' : '100%'), opacity: 0 },
+                        { x: window.innerWidth < 768 ? '0' : (isEven ? '100%' : '-100%'), opacity: 0 },
                         {
                             x: '0%',
                             opacity: 1,
@@ -242,6 +248,45 @@ export default function DndxPage() {
         return () => ctx.revert();
     }, []);
 
+    const UtilityWheel = () => (
+        <div className="relative w-full aspect-square max-w-sm mx-auto flex items-center justify-center">
+            <style jsx>{`
+                @keyframes rotate { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+                @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+                .utility-wheel { animation: rotate 40s linear infinite; }
+                .utility-wheel-center { animation: pulse 4s ease-in-out infinite; }
+            `}</style>
+            <div className="utility-wheel absolute inset-0">
+                {[...Array(5)].map((_, i) => (
+                    <div key={i} className="absolute inset-0" style={{ transform: `rotate(${i * 72}deg)` }}>
+                        <div className="absolute top-1/2 left-0 w-1/2 h-[1.5px] bg-gradient-to-l from-purple-400/50 to-transparent"></div>
+                    </div>
+                ))}
+            </div>
+            <div className="utility-wheel-center absolute w-32 h-32 bg-purple-900/20 backdrop-blur-sm rounded-full border border-purple-500/30"></div>
+            <div className="absolute w-24 h-24 bg-gray-900/50 rounded-full flex items-center justify-center">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" stroke="#A78BFA" strokeWidth="1.5" strokeLinejoin="round"/>
+                    <path d="M2 7L12 12L22 7" stroke="#A78BFA" strokeWidth="1.5" strokeLinejoin="round"/>
+                    <path d="M12 22V12" stroke="#A78BFA" strokeWidth="1.5" strokeLinejoin="round"/>
+                </svg>
+            </div>
+            
+            {[
+                { icon: <ShieldCheck size={20} />, angle: -90, label: "Escrow" },
+                { icon: <Search size={20} />, angle: -18, label: "Compliance" },
+                { icon: <Rocket size={20} />, angle: 54, label: "Launchpad" },
+                { icon: <Users size={20} />, angle: 126, label: "Community" },
+                { icon: <Vote size={20} />, angle: 198, label: "DAO" },
+            ].map(({ icon, angle }, i) => (
+                <div key={i} className="absolute top-1/2 left-1/2 w-12 h-12 -m-6 flex items-center justify-center bg-gray-800/80 border border-purple-500/30 rounded-full text-purple-400"
+                     style={{ transform: `translateX(-50%) translateY(-50%) rotate(${angle}deg) translateX(120px) rotate(${-angle}deg)` }}>
+                    {icon}
+                </div>
+            ))}
+        </div>
+    );
+
     return (
         <main ref={mainRef} className="dndx-page bg-[#0A0A14] text-gray-200 overflow-x-hidden">
             {/* Hero Section */}
@@ -257,6 +302,27 @@ export default function DndxPage() {
                         <Button variant="outline" size="lg" className="rounded-full w-full md:w-auto px-10 py-7 text-lg font-semibold border-purple-400/50 text-purple-300 hover:bg-purple-400/10 hover:text-white transition-all transform hover:-translate-y-1">
                             Read Whitepaper
                         </Button>
+                    </div>
+                </div>
+            </section>
+            
+            {/* About DNDX Section */}
+            <section id="about-dndx" className="dndx-section py-20 md:py-28 px-8">
+                <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+                    <div className="prose prose-xl prose-invert text-gray-300">
+                         <h2 className="text-4xl md:text-5xl font-bold mb-8 !bg-gradient-to-r !from-purple-300 !to-blue-300 !bg-clip-text !text-transparent">What is Dendrites (DNDX)?</h2>
+                         <p>
+                            Dendrites is the <strong className="text-white">AI-powered trust layer for Web3</strong> — built to fuse money, compliance, and community into one unstoppable engine.
+                         </p>
+                         <p>
+                            Today’s crypto rails remain broken by scams and costly compliance. DNDX aims to change this with adaptive escrow, AI-driven compliance, and a transparent presale platform designed to restore fairness.
+                         </p>
+                         <p>
+                            The outcome is not just another token, but the first <strong className="text-white">ecosystem-level asset</strong> designed to make trust programmable, compliance automatic, and growth unstoppable.
+                         </p>
+                    </div>
+                    <div className="flex items-center justify-center">
+                        <UtilityWheel />
                     </div>
                 </div>
             </section>
