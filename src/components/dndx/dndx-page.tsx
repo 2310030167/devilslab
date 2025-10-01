@@ -1,12 +1,13 @@
+
 "use client";
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
-import { BarChart, AreaChart, PieChart as PieChartIcon, LineChart } from 'lucide-react';
+import { BarChart, AreaChart, PieChart as PieChartIcon, Rocket, Share2 } from 'lucide-react';
 import DndxHeroBackground from './dndx-hero-background';
-import { ShieldAlert, PiggyBank, Bot, TrendingUp, Handshake, Network, Briefcase, FileText } from 'lucide-react';
+import { ShieldAlert, PiggyBank, Bot, TrendingUp, Handshake, Network, Briefcase, FileText, ShieldCheck } from 'lucide-react';
 import { ResponsiveContainer, Pie, PieChart, Line, LineChart as RechartsLineChart, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 import { ChartTooltip, ChartTooltipContent, ChartContainer, ChartConfig } from '@/components/ui/chart';
 
@@ -86,6 +87,34 @@ const timelineData = [
     { date: "2027+", event: "Network Effect Layer" },
 ];
 
+const ecosystemComponents = [
+    {
+        icon: ShieldCheck,
+        title: "Adaptive Escrow Engine",
+        description: "The foundation for trust. Milestone-based, dispute-safe payments for the Web3 economy, ensuring fairness for creators and founders."
+    },
+    {
+        icon: FileText,
+        title: "AI-Powered Compliance",
+        description: "Automated risk defense. Legal Lens AI scans whitepapers and tokenomics while Guardian Agent provides KYC/AML workflows."
+    },
+    {
+        icon: Rocket,
+        title: "Next-Gen Presale Platform",
+        description: "Fair and transparent launches. An anti-bot platform with transparent vesting dashboards to ensure fair allocation for all investors."
+    },
+    {
+        icon: Share2,
+        title: "Ecosystem Growth Tools",
+        description: "AI-driven engagement. The Community Growth Agent fuels 24/7 hype and automates rewards, while Trading Bots empower users."
+    },
+    {
+        icon: Bot,
+        title: "Governance DAO",
+        description: "A community-led future. DNDX stakers guide the ecosystem's direction, treasury spend, and partnerships through DAO oversight."
+    }
+];
+
 
 export default function DndxPage() {
     const mainRef = useRef<HTMLElement>(null);
@@ -139,6 +168,44 @@ export default function DndxPage() {
                 scrollTrigger: { trigger: '.charts-container', start: 'top 80%' },
                 opacity: 1, y: 0, duration: 1, stagger: 0.3, ease: 'power3.out'
             });
+
+            // Ecosystem Timeline
+            const ecosystemTimeline = document.querySelector('.ecosystem-timeline');
+            if(ecosystemTimeline){
+                const timelineLine = ecosystemTimeline.querySelector('.timeline-line-progress');
+                gsap.fromTo(timelineLine, 
+                    { scaleY: 0 }, 
+                    { 
+                        scaleY: 1, 
+                        scrollTrigger: {
+                            trigger: ecosystemTimeline,
+                            start: 'top center',
+                            end: 'bottom bottom',
+                            scrub: 1,
+                        },
+                        transformOrigin: 'top center',
+                    }
+                );
+                const items = gsap.utils.toArray<HTMLElement>('.ecosystem-timeline-item');
+                items.forEach((item, index) => {
+                    const content = item.querySelector('.timeline-content');
+                    const isEven = index % 2 === 0;
+
+                    gsap.fromTo(content, 
+                        { x: window.innerWidth < 768 ? '0' : (isEven ? '-100%' : '100%'), opacity: 0 },
+                        {
+                            x: '0%',
+                            opacity: 1,
+                            duration: 0.8,
+                            ease: 'power2.out',
+                            scrollTrigger: {
+                                trigger: item,
+                                start: 'top 80%',
+                            }
+                        }
+                    );
+                });
+            }
 
             // Roadmap Timeline
             const roadmapSection = document.querySelector('#roadmap');
@@ -262,8 +329,41 @@ export default function DndxPage() {
                 </div>
             </section>
             
+             {/* Ecosystem Components Timeline Section */}
+            <section className="dndx-section py-20 md:py-28 px-8">
+                <h2 className="section-title-dndx">The Core Components of the DNDX Ecosystem</h2>
+                <p className="section-subtitle-dndx text-lg md:text-xl text-gray-400 mb-24 max-w-3xl mx-auto text-center">
+                    A suite of interconnected tools designed to create a fair and secure Web3.
+                </p>
+                
+                <div className="ecosystem-timeline relative max-w-4xl mx-auto">
+                    <div className="timeline-line absolute top-0 left-4 md:left-1/2 -translate-x-1/2 w-1 h-full bg-gray-700/50">
+                        <div className="timeline-line-progress w-full h-full bg-purple-400 origin-top" />
+                    </div>
+
+                    {ecosystemComponents.map((component, index) => {
+                        const Icon = component.icon;
+                        return (
+                            <div key={index} className="ecosystem-timeline-item relative w-full mb-16 flex justify-start md:justify-center items-center">
+                                <div className={`w-full md:w-1/2 flex ${index % 2 === 0 ? 'md:justify-start' : 'md:justify-end'}`}>
+                                    <div className="timeline-content w-full ml-12 md:ml-0 md:max-w-md bg-gray-900/50 rounded-2xl p-6 md:p-8 shadow-xl border border-gray-700/80">
+                                        <div className="flex items-center gap-4 mb-4">
+                                            <div className="w-12 h-12 bg-gradient-to-br from-gray-700 to-gray-800 rounded-xl flex items-center justify-center text-purple-400">
+                                                <Icon size={24} />
+                                            </div>
+                                            <h3 className="text-xl font-bold text-white relative">{component.title}</h3>
+                                        </div>
+                                        <p className="text-gray-400">{component.description}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+            </section>
+
             {/* Tokenomics & Vesting */}
-            <section id="tokenomics" className="dndx-section py-20 md:py-28 px-8">
+            <section id="tokenomics" className="dndx-section py-20 md:py-28 px-8 bg-[#0F101A]">
                 <h2 className="section-title-dndx text-4xl md:text-5xl font-bold text-center mb-6">Tokenomics & Vesting</h2>
                 <p className="section-subtitle-dndx text-lg md:text-xl text-gray-400 mb-16 max-w-3xl mx-auto text-center">A fixed supply and structured vesting schedule designed for long-term sustainable growth.</p>
                 <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center charts-container">
@@ -353,4 +453,6 @@ export default function DndxPage() {
         </main>
     );
 }
+    
+
     

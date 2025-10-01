@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -156,6 +157,18 @@ html {
     @apply text-lg md:text-xl text-muted-foreground mb-12 md:mb-16 max-w-3xl mx-auto text-center;
 }
 
+.ecosystem-timeline-item:nth-child(odd) .timeline-content {
+    @apply md:mr-12 lg:mr-16;
+}
+
+.ecosystem-timeline-item:nth-child(even) .timeline-content {
+    @apply md:ml-12 lg:ml-16;
+}
+
+.ecosystem-timeline-item .timeline-content {
+    @apply md:max-w-none;
+}
+
 @media (max-width: 768px) {
     .dndx-hero-content h1 {
         font-size: 2.5rem;
@@ -164,3 +177,5 @@ html {
         @apply text-lg mb-8;
     }
 }
+
+    
