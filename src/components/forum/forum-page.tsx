@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useRef } from 'react';
@@ -40,14 +41,14 @@ const ComingSoonSection = () => {
 
     return (
         <section ref={sectionRef} className="py-20 px-8 max-w-screen-xl mx-auto">
-             <div className="bg-white border border-gray-200 rounded-2xl shadow-xl p-12 max-w-3xl mx-auto text-center">
+             <div className="bg-white border border-gray-200 rounded-2xl shadow-xl p-8 md:p-12 max-w-3xl mx-auto text-center">
                 <h3 className="text-3xl text-primary font-bold mb-4">Forum Coming Soon</h3>
                 <p className="text-muted-foreground mb-8 text-lg">We're building an incredible community platform where innovators, developers, researchers, and business leaders can connect and collaborate. Get notified when we launch!</p>
-                <div className="flex justify-center gap-4">
-                    <Button asChild variant="outline" size="lg" className="rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                <div className="flex flex-col md:flex-row justify-center gap-4">
+                    <Button asChild variant="outline" size="lg" className="w-full md:w-auto rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
                         <a href="mailto:community@devilslab.io">Get Notified</a>
                     </Button>
-                     <Button asChild size="lg" className="rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                     <Button asChild size="lg" className="w-full md:w-auto rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
                         <a href="https://discord.gg/devilslab" target="_blank" rel="noopener noreferrer">Join Discord</a>
                     </Button>
                 </div>
