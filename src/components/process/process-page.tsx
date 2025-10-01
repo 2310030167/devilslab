@@ -85,7 +85,7 @@ const ProcessPage = () => {
     }, []);
 
     return (
-        <main ref={sectionRef} className="process-page py-32 px-4 md:px-8 max-w-screen-xl mx-auto mt-20">
+        <main ref={sectionRef} className="process-page py-28 px-4 md:px-8 max-w-screen-xl mx-auto mt-20">
             <div className="process-header text-center mb-16 md:mb-24">
                 <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gradient">From Concept to Creation</h1>
                 <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">

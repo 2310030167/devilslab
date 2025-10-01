@@ -52,10 +52,10 @@ const HeroSection = () => {
     <section id="home" className="h-screen relative flex flex-col justify-center items-center text-center overflow-hidden bg-gradient-to-br from-white to-[#F8F9FA]">
       <HeroBackground />
       <div className="relative z-10 max-w-7xl px-8">
-        <h1 ref={titleRef} className="hero-title text-black/70 font-medium tracking-[0.05em] mb-8 text-[clamp(1.5rem,3vw,2.5rem)]">
+        <h1 ref={titleRef} className="hero-title text-black/70 font-medium tracking-[0.05em] mb-6 text-[clamp(1.5rem,3vw,2.5rem)]">
             ENGINEERING DIGITAL REALITIES
         </h1>
-        <p className="hero-subtitle text-lg md:text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
+        <p className="hero-subtitle text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
             DevilsLab pioneers AI solutions, Web3 innovation, business transformation, and cutting-edge research to shape the digital future.
         </p>
         <Button asChild size="lg" className="hero-cta rounded-full px-8 md:px-10 py-6 md:py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
@@ -121,7 +121,7 @@ const ServicesSection = () => {
     ];
 
     return (
-        <section ref={sectionRef} id="services" className="relative py-24 md:py-32 px-4 md:px-8 bg-gray-50 overflow-hidden">
+        <section ref={sectionRef} id="services" className="relative py-20 md:py-28 px-4 md:px-8 bg-gray-50 overflow-hidden">
             <ServicesBackground />
             <div className="relative z-10">
                 <h2 className="section-title">Our Core Services</h2>
@@ -136,7 +136,7 @@ const ServicesSection = () => {
 
 const CareersSection = () => {
     return (
-        <section id="careers" className="py-24 md:py-32 px-4 md:px-8 bg-gray-50">
+        <section id="careers" className="py-20 md:py-28 px-4 md:px-8 bg-gray-50">
             <div className="max-w-screen-xl mx-auto text-center">
                 <h2 className="section-title">Join Our Team</h2>
                 <p className="section-subtitle">Build the future of digital experiences with us at DevilsLab</p>
@@ -155,7 +155,7 @@ const CareersSection = () => {
 const AboutSection = () => {
     const dndxImage = PlaceHolderImages.find(img => img.id === 'dndx-logo');
     return (
-        <section id="about" className="py-24 md:py-32 px-4 md:px-8">
+        <section id="about" className="py-20 md:py-28 px-4 md:px-8">
             <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
                 <div>
                     <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gradient text-left">Engineering Digital Realities</h2>
@@ -204,7 +204,7 @@ const FaqSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-24 md:py-32 px-4 md:px-8 bg-gray-50">
+    <section id="faq" className="py-20 md:py-28 px-4 md:px-8 bg-gray-50">
       <h2 className="section-title">Frequently Asked Questions</h2>
       <p className="section-subtitle">Have questions? We have answers. Find the most common inquiries below.</p>
       <div className="max-w-4xl mx-auto">
@@ -272,7 +272,7 @@ const ContactSection = () => {
         form.reset();
     }
     return (
-        <section id="contact" className="py-24 md:py-32 px-4 md:px-8 bg-gray-50">
+        <section id="contact" className="py-20 md:py-28 px-4 md:px-8 bg-gray-50">
             <h2 className="section-title">Get In Touch</h2>
             <p className="section-subtitle">Have an idea? Let's build the future together.</p>
             <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-8 md:gap-16 bg-white p-6 md:p-12 rounded-2xl shadow-2xl border border-gray-200/80">

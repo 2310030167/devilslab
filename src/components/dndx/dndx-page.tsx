@@ -181,8 +181,8 @@ export default function DndxPage() {
             <section id="hero-dndx" className="h-screen relative flex flex-col justify-center items-center text-center overflow-hidden">
                 <DndxHeroBackground />
                 <div className="dndx-hero-content relative z-10 max-w-5xl px-8">
-                    <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">Dendrites (DNDX)</h1>
-                    <p className="text-xl md:text-2xl text-gray-300/80 mb-12">The AI-Powered Trust Layer for Web3.</p>
+                    <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">Dendrites (DNDX)</h1>
+                    <p className="text-xl md:text-2xl text-gray-300/80 mb-8">The AI-Powered Trust Layer for Web3.</p>
                     <div className="flex flex-col md:flex-row justify-center gap-4">
                         <Button size="lg" className="rounded-full w-full md:w-auto px-10 py-7 text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/20 transition-all transform hover:-translate-y-1">
                             Join The Presale
@@ -195,7 +195,7 @@ export default function DndxPage() {
             </section>
 
             {/* Problem Section */}
-            <section id="problem" className="dndx-section py-24 md:py-32 px-8 bg-[#0F101A]">
+            <section id="problem" className="dndx-section py-20 md:py-28 px-8 bg-[#0F101A]">
                 <h2 className="section-title-dndx text-4xl md:text-5xl font-bold text-center mb-6">The Web3 Economy is at a Breaking Point</h2>
                 <p className="section-subtitle-dndx text-lg md:text-xl text-gray-400 mb-16 max-w-3xl mx-auto text-center">Trust is the scarcest resource, hindering growth and adoption.</p>
                 <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -218,7 +218,7 @@ export default function DndxPage() {
             </section>
 
             {/* Solution Section */}
-            <section id="solution" className="dndx-section py-24 md:py-32 px-8">
+            <section id="solution" className="dndx-section py-20 md:py-28 px-8">
                 <h2 className="section-title-dndx text-4xl md:text-5xl font-bold text-center mb-6">The Solution: An AI-Powered Trust Layer</h2>
                 <p className="section-subtitle-dndx text-lg md:text-xl text-gray-400 mb-16 max-w-3xl mx-auto text-center">DNDX leverages autonomous AI agents and a dual-chain architecture to make Web3 safe, compliant, and fair.</p>
                 <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -246,7 +246,7 @@ export default function DndxPage() {
             </section>
 
              {/* Dual-Chain Section */}
-            <section className="dndx-section dual-chain-section py-24 md:py-32 px-8 bg-[#0F101A]">
+            <section className="dndx-section dual-chain-section py-20 md:py-28 px-8 bg-[#0F101A]">
                 <h2 className="section-title-dndx text-4xl md:text-5xl font-bold text-center mb-6">Dual-Chain Architecture</h2>
                 <p className="section-subtitle-dndx text-lg md:text-xl text-gray-400 mb-20 max-w-3xl mx-auto text-center">Combining Ethereum's security with Polygon's speed for the best of both worlds.</p>
                 <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0 relative">
@@ -263,7 +263,7 @@ export default function DndxPage() {
             </section>
             
             {/* Tokenomics & Vesting */}
-            <section id="tokenomics" className="dndx-section py-24 md:py-32 px-8">
+            <section id="tokenomics" className="dndx-section py-20 md:py-28 px-8">
                 <h2 className="section-title-dndx text-4xl md:text-5xl font-bold text-center mb-6">Tokenomics & Vesting</h2>
                 <p className="section-subtitle-dndx text-lg md:text-xl text-gray-400 mb-16 max-w-3xl mx-auto text-center">A fixed supply and structured vesting schedule designed for long-term sustainable growth.</p>
                 <div className="max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center charts-container">
@@ -316,7 +316,7 @@ export default function DndxPage() {
             </section>
 
              {/* Roadmap Section */}
-            <section id="roadmap" className="dndx-section py-24 md:py-32 px-8 overflow-hidden">
+            <section id="roadmap" className="dndx-section py-20 md:py-28 px-8 overflow-hidden">
                 <div className="max-w-screen-xl mx-auto">
                     <h2 className="section-title-dndx text-4xl md:text-5xl font-bold text-center mb-6">Roadmap</h2>
                     <p className="section-subtitle-dndx text-lg md:text-xl text-gray-400 mb-16 text-center">Our strategic vision for building the future of Web3 trust.</p>
@@ -334,7 +334,7 @@ export default function DndxPage() {
             </section>
 
             {/* CTA Section */}
-            <section id="cta" className="py-24 md:py-32 px-8 text-center bg-[#0F101A]">
+            <section id="cta" className="py-20 md:py-28 px-8 text-center bg-[#0F101A]">
                 <h2 className="text-4xl md:text-5xl font-bold mb-6">Join the Future of Trust.</h2>
                 <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto">Become an early supporter of DNDX and help build a safer, more transparent Web3 economy.</p>
                  <div className="flex justify-center gap-4 flex-wrap">

@@ -18,7 +18,7 @@ const ForumHero = () => {
     }, []);
 
     return (
-        <section ref={sectionRef} className="pt-48 pb-32 px-8 bg-gradient-to-br from-[#F8F9FA] to-white text-center">
+        <section ref={sectionRef} className="pt-48 pb-28 px-8 bg-gradient-to-br from-[#F8F9FA] to-white text-center">
             <h1 className="forum-hero-title text-5xl md:text-7xl font-bold mb-6 text-gradient">Community Forum</h1>
             <p className="forum-hero-p text-xl text-muted-foreground mb-12 max-w-4xl mx-auto">Connect with innovators, researchers, and developers. Share insights, ask questions, and collaborate on the future of AI, Web3, business innovation, and digital marketing.</p>
             <Button size="lg" className="forum-hero-btn rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
@@ -39,7 +39,7 @@ const ComingSoonSection = () => {
     }, []);
 
     return (
-        <section ref={sectionRef} className="py-24 px-8 max-w-screen-xl mx-auto">
+        <section ref={sectionRef} className="py-20 px-8 max-w-screen-xl mx-auto">
              <div className="bg-white border border-gray-200 rounded-2xl shadow-xl p-12 max-w-3xl mx-auto text-center">
                 <h3 className="text-3xl text-primary font-bold mb-4">Forum Coming Soon</h3>
                 <p className="text-muted-foreground mb-8 text-lg">We're building an incredible community platform where innovators, developers, researchers, and business leaders can connect and collaborate. Get notified when we launch!</p>
@@ -104,7 +104,7 @@ const CategoriesSection = () => {
     ];
 
     return (
-        <section ref={sectionRef} className="py-24 px-8">
+        <section ref={sectionRef} className="py-20 px-8">
             <h2 className="section-title text-5xl font-bold text-center mb-16 text-gradient">Forum Categories</h2>
             <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {categories.map(cat => <CategoryCard key={cat.title} {...cat} />)}
@@ -181,7 +181,7 @@ const GuidelinesSection = () => {
     ];
 
     return (
-        <section ref={sectionRef} className="py-24 px-8">
+        <section ref={sectionRef} className="py-20 px-8">
             <h2 className="guidelines-title text-5xl font-bold text-center mb-16 text-gradient">Community Guidelines</h2>
             <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {guidelines.map(g => <GuidelineCard key={g.title} {...g} />)}

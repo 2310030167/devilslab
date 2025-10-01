@@ -33,7 +33,7 @@ const ProjectsPage = () => {
     }, []);
 
     return (
-        <main ref={sectionRef} className="projects-hub py-32 px-4 md:px-8 max-w-screen-xl mx-auto mt-20">
+        <main ref={sectionRef} className="projects-hub py-28 px-4 md:px-8 max-w-screen-xl mx-auto mt-20">
             <div className="hub-header text-center mb-16">
                 <h1 className="text-5xl md:text-6xl font-bold mb-6 text-gradient">Our Work</h1>
                 <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">We solve complex problems by engineering beautiful and effective digital solutions. Explore our case studies.</p>

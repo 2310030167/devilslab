@@ -30,7 +30,7 @@ const ResearchPage = () => {
     ];
 
     return (
-        <section ref={sectionRef} id="research" className="py-32 px-8 max-w-screen-xl mx-auto mt-20">
+        <section ref={sectionRef} id="research" className="py-28 px-8 max-w-screen-xl mx-auto mt-20">
             <h2 className="research-title text-6xl font-bold text-center mb-6 text-gradient pb-4">Pioneering Research</h2>
             <p className="section-subtitle">Exploring the frontiers of technology to shape the future.</p>
             <div className="max-w-screen-lg mx-auto">
