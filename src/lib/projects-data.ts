@@ -1,3 +1,4 @@
+
 export const projects = [
     {
         slug: 'syncgalaxy',
@@ -49,6 +50,58 @@ export const projects = [
         quote: {
             text: "Legal Lens AI has become an indispensable tool for our team, allowing us to focus on high-value legal strategy instead of tedious paperwork.",
             author: "Partner at a Pilot Law Firm"
+        }
+    },
+    {
+        slug: 'quantum-ledger',
+        title: 'Quantum Ledger',
+        tagline: 'A next-generation decentralized finance (DeFi) platform with quantum-resistant security.',
+        imageUrl: 'https://picsum.photos/seed/quantumledger/600/400',
+        tags: ['DeFi', 'Web3', 'Security'],
+        liveUrl: null,
+    
+        heroTagline: 'Securing the Future of Finance with Quantum-Resistant Blockchain',
+        overview: {
+            client: 'Fintech Startup',
+            services: 'Blockchain Development, Cryptography, Smart Contracts',
+            timeline: '12 Months',
+            techStack: ['Rust', 'Solana', 'WebAssembly', 'Next.js']
+        },
+        challenge: "The rise of quantum computing poses a significant threat to the security of existing blockchain technologies, potentially compromising trillions of dollars in assets.",
+        solution: "We engineered Quantum Ledger, a DeFi platform built from the ground up with quantum-resistant cryptographic algorithms. It supports secure asset tokenization, decentralized exchanges, and yield farming, ensuring long-term viability against future threats.",
+        results: [
+            "Developed one of the first PoC quantum-resistant DeFi platforms.",
+            "Secured seed funding based on the strength and innovation of the prototype."
+        ],
+        quote: {
+            text: "DevilsLab delivered a solution that not only met our requirements but positioned us as leaders in the future of secure finance.",
+            author: "CEO, Quantum Ledger"
+        }
+    },
+    {
+        slug: 'connect-sphere',
+        title: 'ConnectSphere',
+        tagline: 'An enterprise-grade social intranet and collaboration suite powered by AI.',
+        imageUrl: 'https://picsum.photos/seed/connectsphere/600/400',
+        tags: ['AI', 'SaaS', 'Enterprise'],
+        liveUrl: 'https://example.com',
+    
+        heroTagline: 'Transforming Internal Communications with an Intelligent Social Platform',
+        overview: {
+            client: 'Fortune 500 Enterprise',
+            services: 'Platform Development, AI Integration, UI/UX for Enterprise',
+            timeline: '9 Months',
+            techStack: ['.NET Core', 'React', 'Azure AI', 'Microsoft Graph']
+        },
+        challenge: "A global workforce of over 50,000 employees was struggling with disconnected communication channels, information silos, and low employee engagement.",
+        solution: "We built ConnectSphere, a unified social intranet that integrates with existing enterprise systems. Its AI-powered recommendation engine surfaces relevant content, colleagues, and communities for each user, fostering a more connected and productive work environment.",
+        results: [
+            "Increased employee engagement metrics by 30% within six months of launch.",
+            "Reduced time spent searching for information by an average of 20% per employee."
+        ],
+        quote: {
+            text: "ConnectSphere has revolutionized how our teams collaborate. It's the digital headquarters we always needed.",
+            author: "Chief Information Officer"
         }
     }
 ];
