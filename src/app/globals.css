@@ -158,7 +158,7 @@ html {
 
 @media (max-width: 768px) {
     .dndx-hero-content h1 {
-        @apply text-4xl;
+        font-size: 2.5rem;
     }
     .dndx-hero-content p {
         @apply text-lg mb-8;
