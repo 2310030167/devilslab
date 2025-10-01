@@ -43,7 +43,7 @@ export default function Header() {
       <Link
         href={href}
         className={cn(
-          "transition-colors duration-300 relative text-lg",
+          "transition-colors duration-300 relative text-base", // Reduced font size from text-lg
           isDNDXPage ? "text-gray-300 hover:text-white" : "text-primary hover:text-accent",
           "after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:transition-all after:duration-300",
           isActive
@@ -70,7 +70,7 @@ export default function Header() {
       </Link>
       
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex gap-6 items-center">
+      <nav className="hidden md:flex gap-4 items-center"> {/* Reduced gap from gap-6 */}
         {navLinks.map((link) => (
           <NavLink key={link.href} href={link.href} label={link.label} />
         ))}
