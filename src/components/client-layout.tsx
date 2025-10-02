@@ -11,6 +11,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   const pathname = usePathname();
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPreloading, setIsPreloading] = useState(true);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     if (isLoaded) {
@@ -26,7 +31,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         {isPreloading && <Preloader onLoaded={() => setIsLoaded(true)} />}
       </AnimatePresence>
       
-      <Header />
+      {isClient && <Header />}
 
       <AnimatePresence mode="wait">
         <motion.div
@@ -37,7 +42,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
           <main>{children}</main>
-          <Footer />
+          {isClient && <Footer />}
         </motion.div>
       </AnimatePresence>
     </>

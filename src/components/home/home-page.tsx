@@ -26,9 +26,14 @@ if (typeof window !== 'undefined') {
 
 const HeroSection = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    if (titleRef.current) {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isClient && titleRef.current) {
         const titleText = titleRef.current.textContent || '';
         titleRef.current.innerHTML = titleText.split('').map(char => 
             char === ' ' ? ' ' : `<span class="char inline-block opacity-0 translate-y-12">${char}</span>`
@@ -46,11 +51,11 @@ const HeroSection = () => {
         gsap.fromTo('.hero-subtitle', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, delay: 1.5, ease: 'power2.out' });
         gsap.fromTo('.hero-cta', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, delay: 2, ease: 'power2.out' });
     }
-  }, []);
+  }, [isClient]);
 
   return (
     <section id="home" className="h-screen relative flex flex-col justify-center items-center text-center overflow-hidden bg-gradient-to-br from-white to-[#F8F9FA]">
-      <HeroBackground />
+      {isClient && <HeroBackground />}
       <div className="relative z-10 max-w-7xl px-8">
         <h1 ref={titleRef} className="hero-title text-black/70 font-medium tracking-[0.05em] mb-6 text-[clamp(1.5rem,3vw,2.5rem)]">
             ENGINEERING DIGITAL REALITIES

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -10,9 +10,14 @@ export default function DndxHeroBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameId = useRef<number>();
   const isMobile = useIsMobile();
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    if (isMobile || !canvasRef.current) return;
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient || isMobile || !canvasRef.current) return;
 
     let scene: THREE.Scene,
         camera: THREE.PerspectiveCamera,
@@ -167,8 +172,12 @@ export default function DndxHeroBackground() {
       }
       if(renderer) renderer.dispose();
     };
-  }, [isMobile]);
+  }, [isClient, isMobile]);
 
+  if (!isClient) {
+    return null;
+  }
+  
   if(isMobile) {
     return (
       <div className="absolute top-0 left-0 w-full h-full z-0 opacity-20">
