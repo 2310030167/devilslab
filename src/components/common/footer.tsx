@@ -49,7 +49,7 @@ export default function Footer() {
 
                     <div>
                         <h5 className="text-gray-500 font-semibold tracking-widest uppercase mb-4 text-sm">Social</h5>
-                        <SocialLink href="https://twitter.com/devilslab_io" icon={<Twitter size={18} />} label="Twitter" />
+                        <SocialLink href="https://x.com/DevilsLab0455?t=WupYuPib7LZ7pb4aIrl0Xw&s=09" icon={<Twitter size={18} />} label="Twitter" />
                         <SocialLink href="https://github.com/devilslab-io" icon={<Github size={18} />} label="GitHub" />
                         <SocialLink href="https://www.instagram.com/devilslab_digitals_pvt?igsh=MWh5eTd3amY3a20wNA==" icon={<Instagram size={18} />} label="Instagram" />
                         <SocialLink href="https://discord.gg/GkhErQkg" icon={
@@ -67,7 +67,7 @@ export default function Footer() {
 
                 <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
                     <p className="mb-4 md:mb-0">© {new Date().getFullYear()} DevilsLab MVP • All rights reserved</p>
-                    <a href="https://dndx.io" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors">
+                    <a href="https://Dendrites.ai" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors">
                         Powered by DNDX <ArrowUpRight size={16} />
                     </a>
                 </div>

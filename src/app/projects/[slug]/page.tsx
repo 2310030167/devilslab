@@ -98,9 +98,9 @@ export default function ProjectCaseStudyPage({ params }: { params: { slug: strin
                     className="object-contain p-4"
                 />
               </div>
-              <p className="text-center text-muted-foreground mb-6">
+              <a href="https://Dendrites.ai" target="_blank" rel="noopener noreferrer" className="text-center text-muted-foreground mb-6 block hover:text-accent transition-colors">
                 Powered by DNDX <ArrowUpRight className="inline-block" size={16} />
-              </p>
+              </a>
               {project.liveUrl ? (
                 <Button asChild size="lg" className="w-full rounded-full py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">Visit Project</a>
