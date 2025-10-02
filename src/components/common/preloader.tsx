@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import Image from 'next/image';
 
 interface PreloaderProps {
   onLoaded: () => void;
@@ -14,25 +15,14 @@ export default function Preloader({ onLoaded }: PreloaderProps) {
   useEffect(() => {
     if (!logoRef.current || !preloaderRef.current) return;
     
-    const chars = logoRef.current.textContent?.split('') || [];
-    logoRef.current.innerHTML = chars.map(char => `<span class="char inline-block opacity-0">${char}</span>`).join('');
-    
     const tl = gsap.timeline({ onComplete: onLoaded });
 
-    tl.to(logoRef.current.querySelectorAll('.char'), {
-        opacity: 1,
-        y: 0,
-        stagger: 0.1,
-        ease: 'power3.out',
-        duration: 0.8
-    })
+    tl.fromTo(logoRef.current, 
+      { opacity: 0, scale: 0.9 }, 
+      { opacity: 1, scale: 1, duration: 1.5, ease: 'power3.out' }
+    )
     .to(logoRef.current, {
         delay: 0.5,
-        letterSpacing: '0.5em',
-        ease: 'power2.inOut',
-        duration: 0.7
-    })
-    .to(logoRef.current, {
         opacity: 0,
         ease: 'power2.in',
         duration: 0.4
@@ -51,7 +41,9 @@ export default function Preloader({ onLoaded }: PreloaderProps) {
 
   return (
     <div ref={preloaderRef} className="preloader">
-      <div ref={logoRef} className="preloader-logo">DEVILSLAB</div>
+      <div ref={logoRef} className="preloader-logo-container">
+        <Image src="/devilslabM_bgr.png" alt="DevilsLab Logo" width={150} height={150} priority />
+      </div>
     </div>
   );
 }
