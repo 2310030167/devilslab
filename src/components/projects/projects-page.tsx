@@ -41,12 +41,12 @@ const ProjectsPage = () => {
             <div className="case-study-grid grid grid-cols-1 md:grid-cols-2 gap-8">
                 {projects.map((project) => (
                     <Link href={`/projects/${project.slug}`} key={project.slug} className="case-study-card group bg-white rounded-2xl text-decoration-none text-inherit shadow-lg hover:shadow-2xl overflow-hidden transition-all duration-300 ease-in-out transform hover:-translate-y-2 block">
-                        <div className="relative h-64 bg-gray-100 flex items-center justify-center overflow-hidden">
+                        <div className="relative h-64 bg-white flex items-center justify-center overflow-hidden">
                              <Image 
                                 src={project.imageUrl}
                                 alt={`${project.title} logo`}
                                 fill
-                                className="object-contain p-8 transition-transform duration-300 group-hover:scale-105"
+                                className="object-contain p-6 transition-transform duration-300 group-hover:scale-105"
                                 data-ai-hint="logo tech"
                             />
                         </div>
