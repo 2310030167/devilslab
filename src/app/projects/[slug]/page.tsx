@@ -90,12 +90,12 @@ export default function ProjectCaseStudyPage({ params }: { params: { slug: strin
 
           <aside className="lg:sticky top-32">
             <div className="bg-gray-50 border border-gray-200/80 rounded-2xl p-8">
-              <div className="relative h-48 w-full mb-6">
+              <div className="relative h-48 w-full mb-6 bg-white rounded-lg">
                 <Image
                     src={project.imageUrl}
                     alt={`${project.title} logo`}
                     fill
-                    className="object-contain"
+                    className="object-contain p-4"
                 />
               </div>
               <p className="text-center text-muted-foreground mb-6">
