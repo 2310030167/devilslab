@@ -5,13 +5,18 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { Button } from '@/components/ui/button';
 import { Rocket, Bot, Link2, Briefcase, BarChart, MessageSquare, FolderGit2 } from 'lucide-react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 const ForumHero = () => {
     return (
         <section className="pt-48 pb-28 px-8 bg-gradient-to-br from-[#F8F9FA] to-white text-center">
-            <h1 className="forum-hero-title text-5xl md:text-7xl font-bold mb-6 text-gradient">Community Forum</h1>
-            <p className="forum-hero-p text-xl text-muted-foreground mb-12 max-w-4xl mx-auto">Connect with innovators, researchers, and developers. Share insights, ask questions, and collaborate on the future of AI, Web3, business innovation, and digital marketing.</p>
-            <Button asChild size="lg" className="forum-hero-btn rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+            <h1 className="forum-hero-title text-5xl md:text-7xl font-bold mb-6 text-gradient g-fade-in">Community Forum</h1>
+            <p className="forum-hero-p text-xl text-muted-foreground mb-12 max-w-4xl mx-auto g-fade-in">Connect with innovators, researchers, and developers. Share insights, ask questions, and collaborate on the future of AI, Web3, business innovation, and digital marketing.</p>
+            <Button asChild size="lg" className="forum-hero-btn rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 g-fade-in">
                 <a href="https://discord.gg/GkhErQkg" target="_blank" rel="noopener noreferrer">Join the Community</a>
             </Button>
         </section>
@@ -21,7 +26,7 @@ const ForumHero = () => {
 const LiveOnDiscordSection = () => {
     return (
         <section className="live-discord-section py-20 px-8 max-w-screen-xl mx-auto">
-             <div className="bg-white border border-gray-200 rounded-2xl shadow-xl p-8 md:p-12 max-w-3xl mx-auto text-center">
+             <div className="bg-white border border-gray-200 rounded-2xl shadow-xl p-8 md:p-12 max-w-3xl mx-auto text-center g-fade-in">
                 <h3 className="text-3xl text-primary font-bold mb-4">Our Community is Live on Discord!</h3>
                 <p className="text-muted-foreground mb-8 text-lg">The conversation has started. Join innovators, developers, and researchers on our official Discord server to share insights, ask questions, and collaborate.</p>
                 <div className="flex justify-center">
@@ -36,7 +41,7 @@ const LiveOnDiscordSection = () => {
 
 
 const CategoryCard = ({ icon, title, description, href }: { icon: React.ReactNode, title: string, description: string, href: string }) => (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="category-card block bg-white border border-gray-200/80 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer">
+    <a href={href} target="_blank" rel="noopener noreferrer" className="category-card block bg-white border border-gray-200/80 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer g-fade-in">
         <div className="flex items-center gap-4 mb-4">
             <div className="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center text-white">
                 {icon}
@@ -65,7 +70,7 @@ const CategoriesSection = () => {
 
     return (
         <section className="categories-section py-20 px-8">
-            <h2 className="section-title text-5xl font-bold text-center mb-16 text-gradient">Forum Categories</h2>
+            <h2 className="section-title text-5xl font-bold text-center mb-16 text-gradient g-fade-in">Forum Categories</h2>
             <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {categories.map(cat => <CategoryCard key={cat.title} {...cat} />)}
             </div>
@@ -74,7 +79,7 @@ const CategoriesSection = () => {
 };
 
 const StatItem = ({ number, label }: { number: string, label: string }) => (
-    <div className="stat-item text-center p-8 bg-white border border-gray-200/80 rounded-2xl shadow-lg">
+    <div className="stat-item text-center p-8 bg-white border border-gray-200/80 rounded-2xl shadow-lg g-fade-in">
         <div className="text-4xl font-bold text-primary mb-2">{number}</div>
         <div className="text-sm text-muted-foreground uppercase tracking-wider">{label}</div>
     </div>
@@ -95,7 +100,7 @@ const StatsSection = () => {
 
 
 const GuidelineCard = ({ title, description }: { title: string, description: string }) => (
-    <div className="guideline-card bg-white border border-gray-200/80 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+    <div className="guideline-card bg-white border border-gray-200/80 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 g-fade-in">
         <h4 className="text-xl font-bold text-primary mb-3">{title}</h4>
         <p className="text-muted-foreground">{description}</p>
     </div>
@@ -113,7 +118,7 @@ const GuidelinesSection = () => {
 
     return (
         <section className="guidelines-section py-20 px-8">
-            <h2 className="guidelines-title text-5xl font-bold text-center mb-16 text-gradient">Community Guidelines</h2>
+            <h2 className="guidelines-title text-5xl font-bold text-center mb-16 text-gradient g-fade-in">Community Guidelines</h2>
             <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {guidelines.map(g => <GuidelineCard key={g.title} {...g} />)}
             </div>
@@ -126,60 +131,19 @@ export default function ForumPage() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            gsap.fromTo('.forum-hero-title', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 1, ease: 'power2.out', delay: 0.3 });
-            gsap.fromTo('.forum-hero-p', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.6 });
-            gsap.fromTo('.forum-hero-btn', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.9 });
-
-            const animateSection = (selector: string) => {
-                const section = document.querySelector(selector);
-                if (section) {
-                    gsap.fromTo(section, { opacity: 0, y: 50 }, {
-                        scrollTrigger: { trigger: section, start: 'top 80%' },
-                        opacity: 1, y: 0, duration: 0.8, ease: 'power2.out'
-                    });
+            // Animate all elements with the g-fade-in class
+            gsap.to(".g-fade-in", {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power2.out',
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: mainRef.current,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none',
                 }
-            };
-            
-            animateSection('.live-discord-section');
-
-            const categoriesSection = document.querySelector('.categories-section');
-            if (categoriesSection) {
-                 gsap.fromTo(categoriesSection.querySelector('.section-title'), { opacity: 0, y: 50 }, {
-                    scrollTrigger: { trigger: categoriesSection.querySelector('.section-title'), start: 'top 80%' },
-                    opacity: 1, y: 0, duration: 1, ease: 'power2.out'
-                });
-                gsap.utils.toArray('.category-card').forEach((card, i) => {
-                    gsap.fromTo(card as HTMLElement, { opacity: 0, y: 50 }, {
-                        scrollTrigger: { trigger: card as HTMLElement, start: 'top 85%' },
-                        opacity: 1, y: 0, duration: 0.8, delay: (i % 4) * 0.1, ease: 'power2.out'
-                    });
-                });
-            }
-
-            const statsSection = document.querySelector('.stats-section');
-            if(statsSection){
-                gsap.utils.toArray('.stat-item').forEach((item, i) => {
-                    gsap.fromTo(item as HTMLElement, { opacity: 0, y: 50 }, {
-                        scrollTrigger: { trigger: item as HTMLElement, start: 'top 85%' },
-                        opacity: 1, y: 0, duration: 0.8, delay: i * 0.1, ease: 'power2.out'
-                    });
-                });
-            }
-
-            const guidelinesSection = document.querySelector('.guidelines-section');
-            if(guidelinesSection) {
-                gsap.fromTo('.guidelines-title', { opacity: 0, y: 50 }, {
-                    scrollTrigger: { trigger: '.guidelines-title', start: 'top 80%' },
-                    opacity: 1, y: 0, duration: 1, ease: 'power2.out'
-                });
-                gsap.utils.toArray('.guideline-card').forEach((card, i) => {
-                    gsap.fromTo(card as HTMLElement, { opacity: 0, y: 50 }, {
-                        scrollTrigger: { trigger: card as HTMLElement, start: 'top 85%' },
-                        opacity: 1, y: 0, duration: 0.8, delay: (i % 3) * 0.1, ease: 'power2.out'
-                    });
-                });
-            }
-
+            });
         }, mainRef);
         return () => ctx.revert();
     }, []);
