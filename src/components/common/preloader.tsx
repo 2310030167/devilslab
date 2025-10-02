@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import Image from 'next/image';
 
 interface PreloaderProps {
   onLoaded: () => void;
@@ -42,7 +41,9 @@ export default function Preloader({ onLoaded }: PreloaderProps) {
   return (
     <div ref={preloaderRef} className="preloader">
       <div ref={logoRef} className="preloader-logo-container">
-        <Image src="/DevilsLabM-bgr.png" alt="DevilsLab Logo" width={150} height={150} priority />
+        <h1 className="text-4xl md:text-5xl font-bold text-gradient">
+          DevilsLab Digitals
+        </h1>
       </div>
     </div>
   );
