@@ -42,6 +42,7 @@ export default function LegalModal({ isOpen, onClose, title, content }: LegalMod
 
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = ''; // Cleanup on component unmount as well
         };
     }, [isOpen, onClose]);
 
