@@ -4,7 +4,7 @@ export const projects = [
         slug: 'syncgalaxy',
         title: 'SyncGalaxy',
         tagline: 'A global creator & startup growth hub designed for mass collaboration.',
-        imageUrl: '/image/sg.jpg',
+        imageUrl: '/images/sg.jpg',
         tags: ['Web Platform', 'Community', 'Development'],
         liveUrl: 'https://syncgalaxy.io/',
         
