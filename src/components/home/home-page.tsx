@@ -144,7 +144,7 @@ const CareersSection = () => {
                     <h3 className="text-2xl md:text-3xl text-primary font-bold mb-4">No Open Positions Currently</h3>
                     <p className="text-muted-foreground mb-8 text-base md:text-lg">We don't have any open positions at the moment, but we're always interested in connecting with talented individuals who share our passion for innovation.</p>
                     <Button asChild size="lg" className="rounded-full px-8 md:px-10 py-6 md:py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
-                        <a href="mailto:careers@devilslab.io">Send Your Portfolio</a>
+                        <a href="mailto:eajaz.dev@devilslab.co.in">Send Your Portfolio</a>
                     </Button>
                 </div>
             </div>
