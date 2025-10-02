@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'DevilsLab - Engineering Digital Realities',
   description: 'DevilsLab pioneers AI solutions, Web3 innovation, business transformation, and cutting-edge research to shape the digital future.',
   icons: {
-    icon: '/icondsl.png',
+    icon: '/icondsl.png?v=2',
   },
 };
 
