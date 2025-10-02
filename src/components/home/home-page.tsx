@@ -135,7 +135,6 @@ const ServicesSection = () => {
 };
 
 const AboutSection = () => {
-    const dndxImage = PlaceHolderImages.find(img => img.id === 'dndx-logo');
     return (
         <section id="about" className="py-20 md:py-28 px-4 md:px-8">
             <div className="max-w-screen-xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
@@ -144,17 +143,15 @@ const AboutSection = () => {
                     <p className="text-lg text-muted-foreground mb-6 leading-relaxed">DevilsLab is a collective of visionary engineers, researchers, and strategists dedicated to pushing the boundaries of technology. We partner with ambitious startups and enterprises to architect and build the next generation of digital products.</p>
                     <p className="text-lg text-muted-foreground leading-relaxed">Our mission is to translate complex challenges into elegant, scalable, and impactful solutions. From intelligent AI systems to decentralized Web3 platforms, we are committed to delivering excellence and shaping a smarter, more connected future.</p>
                 </div>
-                <div className="h-[300px] md:h-[400px] bg-gradient-to-br from-[#F8F9FA] to-[#E9ECEF] rounded-2xl flex items-center justify-center relative overflow-hidden border border-black/10 shadow-2xl p-8">
-                    {dndxImage && (
-                        <Image
-                            src={dndxImage.imageUrl}
-                            alt={dndxImage.description}
-                            width={400}
-                            height={400}
-                            data-ai-hint={dndxImage.imageHint}
-                            className="object-contain w-full h-full"
-                        />
-                    )}
+                <div className="h-[300px] md:h-[400px] bg-white rounded-2xl flex items-center justify-center relative overflow-hidden border border-black/10 shadow-2xl p-8">
+                    <Image
+                        src="/images/DevilsLab.png"
+                        alt="DevilsLab Logo"
+                        width={400}
+                        height={400}
+                        data-ai-hint="logo tech"
+                        className="object-contain w-full h-full"
+                    />
                 </div>
             </div>
         </section>
