@@ -42,7 +42,7 @@ export default function Preloader({ onLoaded }: PreloaderProps) {
   return (
     <div ref={preloaderRef} className="preloader">
       <div ref={logoRef} className="preloader-logo-container">
-        <Image src="/devilslabM_bgr.png" alt="DevilsLab Logo" width={150} height={150} priority />
+        <Image src="/DevilsLabM-bgr.png" alt="DevilsLab Logo" width={150} height={150} priority />
       </div>
     </div>
   );
