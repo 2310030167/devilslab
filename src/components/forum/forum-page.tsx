@@ -22,14 +22,14 @@ const ForumHero = () => {
         <section ref={sectionRef} className="pt-48 pb-28 px-8 bg-gradient-to-br from-[#F8F9FA] to-white text-center">
             <h1 className="forum-hero-title text-5xl md:text-7xl font-bold mb-6 text-gradient">Community Forum</h1>
             <p className="forum-hero-p text-xl text-muted-foreground mb-12 max-w-4xl mx-auto">Connect with innovators, researchers, and developers. Share insights, ask questions, and collaborate on the future of AI, Web3, business innovation, and digital marketing.</p>
-            <Button size="lg" className="forum-hero-btn rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
-                Join the Community
+            <Button asChild size="lg" className="forum-hero-btn rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                <a href="https://discord.gg/GkhErQkg" target="_blank" rel="noopener noreferrer">Join the Community</a>
             </Button>
         </section>
     );
 };
 
-const ComingSoonSection = () => {
+const LiveOnDiscordSection = () => {
     const sectionRef = useRef<HTMLElement>(null);
     useEffect(() => {
         if (!sectionRef.current) return;
@@ -42,14 +42,11 @@ const ComingSoonSection = () => {
     return (
         <section ref={sectionRef} className="py-20 px-8 max-w-screen-xl mx-auto">
              <div className="bg-white border border-gray-200 rounded-2xl shadow-xl p-8 md:p-12 max-w-3xl mx-auto text-center">
-                <h3 className="text-3xl text-primary font-bold mb-4">Forum Coming Soon</h3>
-                <p className="text-muted-foreground mb-8 text-lg">We're building an incredible community platform where innovators, developers, researchers, and business leaders can connect and collaborate. Get notified when we launch!</p>
-                <div className="flex flex-col md:flex-row justify-center gap-4">
-                    <Button asChild variant="outline" size="lg" className="w-full md:w-auto rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
-                        <a href="mailto:community@devilslab.io">Get Notified</a>
-                    </Button>
-                     <Button asChild size="lg" className="w-full md:w-auto rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
-                        <a href="https://discord.gg/devilslab" target="_blank" rel="noopener noreferrer">Join Discord</a>
+                <h3 className="text-3xl text-primary font-bold mb-4">Our Community is Live on Discord!</h3>
+                <p className="text-muted-foreground mb-8 text-lg">The conversation has started. Join innovators, developers, and researchers on our official Discord server to share insights, ask questions, and collaborate.</p>
+                <div className="flex justify-center">
+                    <Button asChild size="lg" className="w-full md:w-auto rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                        <a href="https://discord.gg/GkhErQkg" target="_blank" rel="noopener noreferrer">Join Discord</a>
                     </Button>
                 </div>
             </div>
@@ -58,8 +55,8 @@ const ComingSoonSection = () => {
 };
 
 
-const CategoryCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
-    <div className="category-card bg-white border border-gray-200/80 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer">
+const CategoryCard = ({ icon, title, description, href }: { icon: React.ReactNode, title: string, description: string, href: string }) => (
+    <a href={href} target="_blank" rel="noopener noreferrer" className="category-card block bg-white border border-gray-200/80 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer">
         <div className="flex items-center gap-4 mb-4">
             <div className="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center text-white">
                 {icon}
@@ -67,11 +64,10 @@ const CategoryCard = ({ icon, title, description }: { icon: React.ReactNode, tit
             <h3 className="text-xl font-bold text-primary">{title}</h3>
         </div>
         <p className="text-muted-foreground mb-4">{description}</p>
-        <div className="flex justify-between text-sm text-gray-500">
-            <span>Coming Soon</span>
-            <span>0 topics</span>
+        <div className="flex justify-between text-sm text-green-600 font-semibold">
+            <span>Active on Discord</span>
         </div>
-    </div>
+    </a>
 );
 
 const CategoriesSection = () => {
@@ -93,15 +89,16 @@ const CategoriesSection = () => {
         return () => ctx.revert();
     }, []);
 
+    const discordLink = "https://discord.gg/GkhErQkg";
+
     const categories = [
-        { icon: <Bot size={28} />, title: "AI & Machine Learning", description: "Discuss the latest in artificial intelligence, machine learning algorithms, and practical AI implementations." },
-        { icon: <Link2 size={28} />, title: "Web3 & Blockchain", description: "Explore decentralized technologies, smart contracts, DeFi, and the future of the decentralized web." },
-        { icon: <Briefcase size={28} />, title: "Business Innovation", description: "Share strategies for digital transformation, startup methodologies, and innovative business models." },
-        { icon: <BarChart size={28} />, title: "Digital Marketing", description: "Discuss performance marketing, social media strategies, content creation, and marketing analytics." },
-        { icon: <FolderGit2 size={28} />, title: "Web Development", description: "Technical discussions on modern web technologies, frameworks, and interactive experiences." },
-        { icon: <BookOpen size={28} />, title: "Research & Papers", description: "Share research findings, academic papers, and collaborate on new studies across all domains." },
-        { icon: <Rocket size={28} />, title: "Project Showcase", description: "Present your projects, get feedback, and discover what the community is building." },
-        { icon: <MessageSquare size={28} />, title: "General Discussion", description: "Open discussions about technology trends, industry news, and community announcements." },
+        { icon: <Bot size={28} />, title: "AI & Machine Learning", description: "Discuss the latest in artificial intelligence, machine learning algorithms, and practical AI implementations.", href: discordLink },
+        { icon: <Link2 size={28} />, title: "Web3 & Blockchain", description: "Explore decentralized technologies, smart contracts, DeFi, and the future of the decentralized web.", href: discordLink },
+        { icon: <Briefcase size={28} />, title: "Business Innovation", description: "Share strategies for digital transformation, startup methodologies, and innovative business models.", href: discordLink },
+        { icon: <BarChart size={28} />, title: "Digital Marketing", description: "Discuss performance marketing, social media strategies, content creation, and marketing analytics.", href: discordLink },
+        { icon: <FolderGit2 size={28} />, title: "Web Development", description: "Technical discussions on modern web technologies, frameworks, and interactive experiences.", href: discordLink },
+        { icon: <Rocket size={28} />, title: "Project Showcase", description: "Present your projects, get feedback, and discover what the community is building.", href: discordLink },
+        { icon: <MessageSquare size={28} />, title: "General Discussion", description: "Open discussions about technology trends, industry news, and community announcements.", href: discordLink },
     ];
 
     return (
@@ -139,7 +136,7 @@ const StatsSection = () => {
                 <StatItem number="0" label="Members" />
                 <StatItem number="0" label="Topics" />
                 <StatItem number="0" label="Posts" />
-                <StatItem number="8" label="Categories" />
+                <StatItem number="7" label="Categories" />
             </div>
         </section>
     );
@@ -195,10 +192,12 @@ export default function ForumPage() {
     return (
         <>
             <ForumHero />
-            <ComingSoonSection />
+            <LiveOnDiscordSection />
             <CategoriesSection />
             <StatsSection />
             <GuidelinesSection />
         </>
     );
 }
+
+    
