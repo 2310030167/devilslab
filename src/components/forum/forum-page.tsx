@@ -118,7 +118,7 @@ const GuidelinesSection = () => {
 
     return (
         <section className="guidelines-section py-20 px-8">
-            <h2 className="guidelines-title text-5xl font-bold text-center mb-16 text-gradient g-fade-in">Community Guidelines</h2>
+            <h2 className="guidelines-title text-5xl font-bold text-center mb-16 text-gradient g-fade-in pb-2">Community Guidelines</h2>
             <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {guidelines.map(g => <GuidelineCard key={g.title} {...g} />)}
             </div>
@@ -131,8 +131,10 @@ export default function ForumPage() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Animate all elements with the g-fade-in class
-            gsap.to(".g-fade-in", {
+            gsap.fromTo(".g-fade-in", {
+                opacity: 0,
+                y: 20
+            }, {
                 opacity: 1,
                 y: 0,
                 duration: 0.8,
