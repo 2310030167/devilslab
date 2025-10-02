@@ -43,7 +43,6 @@ export default function Footer() {
                     <div>
                         <h5 className="text-gray-500 font-semibold tracking-widest uppercase mb-4 text-sm">Company</h5>
                         <FooterLink href="/#about">About</FooterLink>
-                        <FooterLink href="/#careers">Careers</FooterLink>
                         <FooterLink href="/#research">Research</FooterLink>
                         <FooterLink href="/forum">Forum</FooterLink>
                     </div>

@@ -134,24 +134,6 @@ const ServicesSection = () => {
     );
 };
 
-const CareersSection = () => {
-    return (
-        <section id="careers" className="py-20 md:py-28 px-4 md:px-8 bg-gray-50">
-            <div className="max-w-screen-xl mx-auto text-center">
-                <h2 className="section-title">Join Our Team</h2>
-                <p className="section-subtitle">Build the future of digital experiences with us at DevilsLab</p>
-                <div className="bg-white border border-gray-200 rounded-2xl shadow-xl p-8 md:p-12 max-w-3xl mx-auto">
-                    <h3 className="text-2xl md:text-3xl text-primary font-bold mb-4">No Open Positions Currently</h3>
-                    <p className="text-muted-foreground mb-8 text-base md:text-lg">We don't have any open positions at the moment, but we're always interested in connecting with talented individuals who share our passion for innovation.</p>
-                    <Button asChild size="lg" className="rounded-full px-8 md:px-10 py-6 md:py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
-                        <a href="mailto:eajaz.dev@devilslab.co.in">Send Your Portfolio</a>
-                    </Button>
-                </div>
-            </div>
-        </section>
-    );
-};
-
 const AboutSection = () => {
     const dndxImage = PlaceHolderImages.find(img => img.id === 'dndx-logo');
     return (
@@ -350,7 +332,6 @@ export default function HomePage() {
       <HeroSection />
       <MarqueeSection />
       <ServicesSection />
-      <CareersSection />
       <AboutSection />
       <FaqSection />
       <ContactSection />
