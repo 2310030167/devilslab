@@ -14,7 +14,7 @@ if (typeof window !== "undefined") {
 const ForumHero = () => {
     return (
         <section className="pt-48 pb-28 px-8 bg-gradient-to-br from-[#F8F9FA] to-white text-center">
-            <h1 className="forum-hero-title text-5xl md:text-7xl font-bold mb-6 text-gradient g-fade-in">Community Forum</h1>
+            <h1 className="forum-hero-title text-5xl md:text-7xl font-bold mb-6 text-gradient g-fade-in pb-2">Community Forum</h1>
             <p className="forum-hero-p text-xl text-muted-foreground mb-12 max-w-4xl mx-auto g-fade-in">Connect with innovators, researchers, and developers. Share insights, ask questions, and collaborate on the future of AI, Web3, business innovation, and digital marketing.</p>
             <Button asChild size="lg" className="forum-hero-btn rounded-full px-10 py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 g-fade-in">
                 <a href="https://discord.gg/GkhErQkg" target="_blank" rel="noopener noreferrer">Join the Community</a>
