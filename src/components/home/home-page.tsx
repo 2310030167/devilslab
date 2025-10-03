@@ -241,9 +241,9 @@ const ContactSection = () => {
 
         // !! IMPORTANT !!
         // Replace these with the actual 'name' attributes from your Google Form
-        const GOOGLE_FORM_NAME_ID = 'entry.XXXXXX'; // Replace with actual ID
-        const GOOGLE_FORM_EMAIL_ID = 'entry.YYYYYY'; // Replace with actual ID
-        const GOOGLE_FORM_MESSAGE_ID = 'entry.ZZZZZZ'; // Replace with actual ID
+        const GOOGLE_FORM_NAME_ID = 'entry.XXXXXX'; // Replace with actual ID for "Your Name"
+        const GOOGLE_FORM_EMAIL_ID = 'entry.YYYYYY'; // Replace with actual ID for "Your Email"
+        const GOOGLE_FORM_MESSAGE_ID = 'entry.ZZZZZZ'; // Replace with actual ID for "Your Message"
         
         // !! IMPORTANT !!
         // Replace this with your Google Form's action URL
@@ -372,5 +372,3 @@ export default function HomePage() {
     </>
   );
 }
-
-    
