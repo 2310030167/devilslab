@@ -71,22 +71,31 @@ const HeroSection = () => {
   );
 };
 
-const MarqueeSection = () => (
-    <div className="bg-primary py-6 md:py-8 overflow-hidden whitespace-nowrap border-y border-primary/20">
-        <div className="marquee-content">
-            {Array(2).fill(0).map((_, i) => (
-                 <div key={i} className="inline-block">
-                    <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">AI INNOVATION</span>
-                    <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">WEB3 DEVELOPMENT</span>
-                    <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">BUSINESS SOLUTIONS</span>
-                    <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">RESEARCH PAPERS</span>
-                    <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">MARKETING STRATEGY</span>
-                    <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">DIGITAL TRANSFORMATION</span>
-                 </div>
-            ))}
+const MarqueeSection = () => {
+    const [isClient, setIsClient] = useState(false);
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) return null;
+
+    return (
+        <div className="bg-primary py-6 md:py-8 overflow-hidden whitespace-nowrap border-y border-primary/20">
+            <div className="marquee-content">
+                {Array(2).fill(0).map((_, i) => (
+                     <div key={i} className="inline-block">
+                        <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">AI INNOVATION</span>
+                        <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">WEB3 DEVELOPMENT</span>
+                        <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">BUSINESS SOLUTIONS</span>
+                        <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">RESEARCH PAPERS</span>
+                        <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">MARKETING STRATEGY</span>
+                        <span className="text-xl md:text-3xl font-bold mx-4 md:mx-8 text-white tracking-[0.1em]">DIGITAL TRANSFORMATION</span>
+                     </div>
+                ))}
+            </div>
         </div>
-    </div>
-);
+    )
+};
 
 const ServiceCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
     <div className="service-card bg-white/80 backdrop-blur-sm p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1.5 text-left border border-white/20">
@@ -239,15 +248,10 @@ const ContactSection = () => {
         setIsSubmitting(true);
         setIsSuccess(false);
 
-        // !! IMPORTANT !!
-        // Replace these with the actual 'name' attributes from your Google Form
-        const GOOGLE_FORM_NAME_ID = 'entry.XXXXXX'; // Replace with actual ID for "Your Name"
-        const GOOGLE_FORM_EMAIL_ID = 'entry.YYYYYY'; // Replace with actual ID for "Your Email"
-        const GOOGLE_FORM_MESSAGE_ID = 'entry.ZZZZZZ'; // Replace with actual ID for "Your Message"
-        
-        // !! IMPORTANT !!
-        // Replace this with your Google Form's action URL
-        const GOOGLE_FORM_ACTION_URL = 'PASTE_THE_ACTION_URL_HERE';
+        const GOOGLE_FORM_NAME_ID = 'entry.1864939234';
+        const GOOGLE_FORM_EMAIL_ID = 'entry.1293399033';
+        const GOOGLE_FORM_MESSAGE_ID = 'entry.1118674936';
+        const GOOGLE_FORM_ACTION_URL = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSc_C33f6y_T9E50nZqL-s2qj8vaM9y9xXhro1zV4t9BUhX-xA/formResponse';
 
         const formData = new FormData();
         formData.append(GOOGLE_FORM_NAME_ID, values.name);
@@ -258,10 +262,9 @@ const ContactSection = () => {
             await fetch(GOOGLE_FORM_ACTION_URL, {
                 method: 'POST',
                 body: formData,
-                mode: 'no-cors', // Important to avoid CORS errors
+                mode: 'no-cors',
             });
 
-            // Handle success
             form.reset();
             setIsSuccess(true);
             toast({
