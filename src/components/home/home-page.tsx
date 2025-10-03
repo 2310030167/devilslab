@@ -98,9 +98,14 @@ const ServiceCard = ({ icon, title, description }: { icon: React.ReactNode, titl
 
 const ServicesSection = () => {
     const sectionRef = useRef<HTMLElement>(null);
+    const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
-        if (!sectionRef.current) return;
+        setIsClient(true);
+    }, []);
+
+    useEffect(() => {
+        if (!sectionRef.current || !isClient) return;
         const ctx = gsap.context(() => {
             gsap.fromTo('.section-title, .section-subtitle', { opacity: 0, y: 50 }, {
                 scrollTrigger: { trigger: sectionRef.current!, start: 'top 80%' },
@@ -114,7 +119,7 @@ const ServicesSection = () => {
             });
         }, sectionRef);
         return () => ctx.revert();
-    }, []);
+    }, [isClient]);
 
     const services = [
         { icon: <Bot />, title: "AI & Machine Learning", description: "Develop intelligent systems, automation, and predictive analytics to solve complex business challenges." },
@@ -127,7 +132,7 @@ const ServicesSection = () => {
 
     return (
         <section ref={sectionRef} id="services" className="relative py-20 md:py-28 px-4 md:px-8 bg-gray-50 overflow-hidden">
-            <ServicesBackground />
+            {isClient && <ServicesBackground />}
             <div className="relative z-10">
                 <h2 className="section-title">Our Core Services</h2>
                 <p className="section-subtitle">We engineer solutions that drive innovation and growth.</p>
@@ -218,6 +223,8 @@ const formSchema = z.object({
 
 const ContactSection = () => {
     const { toast } = useToast();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -228,32 +235,53 @@ const ContactSection = () => {
         },
     });
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        const { name, email, message } = values;
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        setIsSubmitting(true);
+        setIsSuccess(false);
 
-        if (!name || !email || !message) {
+        // !! IMPORTANT !!
+        // Replace these with the actual 'name' attributes from your Google Form
+        const GOOGLE_FORM_NAME_ID = 'entry.XXXXXX'; // Replace with actual ID
+        const GOOGLE_FORM_EMAIL_ID = 'entry.YYYYYY'; // Replace with actual ID
+        const GOOGLE_FORM_MESSAGE_ID = 'entry.ZZZZZZ'; // Replace with actual ID
+        
+        // !! IMPORTANT !!
+        // Replace this with your Google Form's action URL
+        const GOOGLE_FORM_ACTION_URL = 'PASTE_THE_ACTION_URL_HERE';
+
+        const formData = new FormData();
+        formData.append(GOOGLE_FORM_NAME_ID, values.name);
+        formData.append(GOOGLE_FORM_EMAIL_ID, values.email);
+        formData.append(GOOGLE_FORM_MESSAGE_ID, values.message);
+
+        try {
+            await fetch(GOOGLE_FORM_ACTION_URL, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors', // Important to avoid CORS errors
+            });
+
+            // Handle success
+            form.reset();
+            setIsSuccess(true);
+            toast({
+                title: "Message Sent! ✔️",
+                description: "Thanks for reaching out. We'll get back to you soon.",
+            });
+            setTimeout(() => setIsSuccess(false), 4000);
+
+        } catch (error) {
+            console.error('Error submitting to Google Form:', error);
             toast({
                 variant: "destructive",
                 title: "Uh oh! Something went wrong.",
-                description: "Please fill out all fields.",
+                description: "There was a problem sending your message. Please try again.",
             });
-            return;
+        } finally {
+            setIsSubmitting(false);
         }
-
-        const recipient = 'eajaz.dev@devilslab.co.in';
-        const subject = `Message from ${name} via DevilsLab Website`;
-        const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-
-        const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        
-        window.location.href = mailtoLink;
-
-        toast({
-            title: "Redirecting to your email client!",
-            description: "Please complete sending the email from your mail application.",
-        });
-        form.reset();
     }
+    
     return (
         <section id="contact" className="py-20 md:py-28 px-4 md:px-8 bg-gray-50">
             <h2 className="section-title">Get In Touch</h2>
@@ -299,8 +327,8 @@ const ContactSection = () => {
                                     </FormItem>
                                 )}
                             />
-                            <Button suppressHydrationWarning type="submit" size="lg" className="w-full rounded-full py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
-                                Send Message
+                            <Button suppressHydrationWarning type="submit" size="lg" disabled={isSubmitting || isSuccess} className="w-full rounded-full py-7 text-lg font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                                {isSubmitting ? <Loader2 className="animate-spin" /> : isSuccess ? 'Message Sent! ✔️' : 'Send Message'}
                             </Button>
                         </form>
                     </Form>
@@ -328,10 +356,15 @@ const ContactSection = () => {
 };
 
 export default function HomePage() {
+    const [isClient, setIsClient] = useState(false);
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
   return (
     <>
       <HeroSection />
-      <MarqueeSection />
+      {isClient && <MarqueeSection />}
       <ServicesSection />
       <AboutSection />
       <FaqSection />
@@ -339,3 +372,5 @@ export default function HomePage() {
     </>
   );
 }
+
+    
