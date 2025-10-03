@@ -18,6 +18,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
+import { sendContactMessage, type SendContactMessageInput } from '@/ai/flows/send-email-flow';
 
 
 if (typeof window !== 'undefined') {
@@ -248,33 +249,23 @@ const ContactSection = () => {
         setIsSubmitting(true);
         setIsSuccess(false);
 
-        const GOOGLE_FORM_NAME_ID = 'entry.1864939234';
-        const GOOGLE_FORM_EMAIL_ID = 'entry.1293399033';
-        const GOOGLE_FORM_MESSAGE_ID = 'entry.1118674936';
-        const GOOGLE_FORM_ACTION_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc_C33f6y_T9E50nZqL-s2qj8vaM9y9xXhro1zV4t9BUhX-xA/formResponse';
-
-        const formData = new FormData();
-        formData.append(GOOGLE_FORM_NAME_ID, values.name);
-        formData.append(GOOGLE_FORM_EMAIL_ID, values.email);
-        formData.append(GOOGLE_FORM_MESSAGE_ID, values.message);
-
         try {
-            await fetch(GOOGLE_FORM_ACTION_URL, {
-                method: 'POST',
-                body: formData,
-                mode: 'no-cors',
-            });
+            const result = await sendContactMessage(values);
 
-            form.reset();
-            setIsSuccess(true);
-            toast({
-                title: "Message Sent! ✔️",
-                description: "Thanks for reaching out. We'll get back to you soon.",
-            });
-            setTimeout(() => setIsSuccess(false), 4000);
+            if (result.success) {
+                form.reset();
+                setIsSuccess(true);
+                toast({
+                    title: "Message Sent! ✔️",
+                    description: "Thanks for reaching out. We'll get back to you soon.",
+                });
+                setTimeout(() => setIsSuccess(false), 4000);
+            } else {
+                 throw new Error("Flow reported failure");
+            }
 
         } catch (error) {
-            console.error('Error submitting to Google Form:', error);
+            console.error('Error submitting form:', error);
             toast({
                 variant: "destructive",
                 title: "Uh oh! Something went wrong.",

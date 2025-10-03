@@ -22,8 +22,6 @@ const SendContactMessageOutputSchema = z.object({
 });
 export type SendContactMessageOutput = z.infer<typeof SendContactMessageOutputSchema>;
 
-// This flow is not currently used by the contact form but is kept for potential future use.
-// The contact form now uses a direct mailto: link.
 const emailPrompt = ai.definePrompt({
     name: 'sendEmailPrompt',
     input: { schema: SendContactMessageInputSchema },
@@ -55,9 +53,9 @@ const sendEmailFlow = ai.defineFlow(
       // In a real application, you would integrate with an email sending service
       // like SendGrid, Mailgun, or AWS SES here to send the email.
       // For this prototype, we'll just log the email content to the console.
-      console.log("----- EMAIL TO BE SENT (from unused flow) -----");
+      console.log("----- EMAIL TO BE SENT -----");
       console.log(text);
-      console.log("----------------------------------------------");
+      console.log("----------------------------");
 
       return { success: true };
     } catch (error) {
