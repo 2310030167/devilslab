@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useRef } from 'react';
@@ -26,7 +27,7 @@ const ResearchPage = () => {
     const papers = [
         { title: "The Impact of Decentralized AI on Data Privacy", authors: "A. Sharma, Dr. L. Chen", published: "Q3 2025", abstract: "This paper explores novel architectures for AI models that operate on decentralized data, enhancing user privacy without sacrificing performance." },
         { title: "Scalable Consensus Mechanisms for Web3 Platforms", authors: "J. Doe, M. Patel", published: "Q4 2025", abstract: "Analyzing the trade-offs between speed, security, and decentralization in next-generation blockchain consensus protocols." },
-        { title: "AI-Driven Personalization in Digital Marketing", authors: "S. Lee, K. Singh", published: "Q1 2026", abstract: "A study on the effectiveness of machine learning models in creating hyper-personalized user experiences and its impact on conversion rates." },
+        { title: "Anatomy of a Finfluencer Scam: Psychological Manipulation in Forex-Course Frauds", authors: "DevilsLab Research", published: "Q2 2026", abstract: "This research paper investigates how finfluencer-led forex-course scams exploit psychological triggers on social media by dissecting the architecture and behavioral tactics of such schemes. It applies psychological frameworks—including Cialdini’s principles of persuasion and prospect theory—to reveal how scammers design manipulative sales funnels. The study’s mixed-methods approach provides a context-specific, theory-driven analysis that exposes the nuanced cognitive and emotional levers activated by these scams." },
     ];
 
     return (
