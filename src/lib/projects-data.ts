@@ -78,5 +78,32 @@ export const projects = [
             text: "Data Whisperer was conceived to close the gap between seeing a problem in the data and actually fixing it.",
             author: "Founder / CEO"
         }
+    },
+    {
+        slug: 'sentiment-analysis-twitter-rnn',
+        title: 'Sentiment Analysis on Twitter Data Using RNNs',
+        tagline: 'An NLP project to automatically determine sentiment from tweets using Recurrent Neural Networks.',
+        imageUrl: null,
+        tags: ['NLP', 'AI', 'RNNs', 'Sentiment Analysis'],
+        liveUrl: null,
+
+        heroTagline: 'Uncovering Public Opinion with Deep Learning on Twitter Data',
+        overview: {
+            client: 'Internal Research & Development',
+            services: 'NLP, Model Development, Data Analysis',
+            timeline: '3 Months',
+            techStack: ['Python', 'TensorFlow/Keras', 'LSTMs', 'Word2Vec']
+        },
+        challenge: "Twitter data is noisy, full of slang, and context-dependent, making it difficult for traditional models to accurately gauge public sentiment. Businesses and researchers need a reliable way to understand public mood in real-time.",
+        solution: "We developed a sentiment analysis model using Recurrent Neural Networks (RNNs), specifically LSTMs, to process the sequential nature of language. The model was trained on a large dataset of labeled tweets to classify new, unseen tweets as positive, negative, or neutral, even when dealing with informal language.",
+        results: [
+            "Achieved a 74% accuracy in sentiment classification on a noisy airline passenger dataset, outperforming simpler models.",
+            "Demonstrated the model's ability to handle context and long-term dependencies in text, crucial for understanding nuanced opinions.",
+            "Built a framework for real-time sentiment tracking that can flag major events or shifts in public opinion based on tweet analysis."
+        ],
+        quote: {
+            text: "This project proved that even with the noise of social media, RNNs can provide a clear and actionable signal of public sentiment at scale.",
+            author: "Lead AI Researcher, DevilsLab"
+        }
     }
 ];
