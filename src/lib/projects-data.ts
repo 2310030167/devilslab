@@ -67,7 +67,7 @@ export const projects = [
             timeline: '12 Months (MVP)',
             techStack: ['React', 'Python', 'XGBoost', 'Snowflake']
         },
-        challenge: "Businesses are drowning in data but starving for clear direction. Traditional BI tools show what happened, but fail to answer 'What should we do now?', leaving non-technical teams with dashboards instead of outcomes.",
+        challenge: "Businesses are drowning in data but starving for clear next steps. Traditional BI tools show what happened but fail to answer 'What should we do now?', leaving non-technical teams with dashboards instead of outcomes.",
         solution: "Data Whisperer is an AI-native analytics platform that ingests data from multiple sources, uses NLP for plain-English queries, and provides prioritized, actionable recommendations. Its autopilot rules can even execute decisions, transforming analytics from a passive tool into an active growth engine.",
         results: [
             "Designed a 'Time to First Insight' of under 10 minutes from signup.",
@@ -77,6 +77,33 @@ export const projects = [
         quote: {
             text: "Data Whisperer was conceived to close the gap between seeing a problem in the data and actually fixing it.",
             author: "Founder / CEO"
+        }
+    },
+    {
+        slug: 'marketsage-ai',
+        title: 'MarketSage AI',
+        tagline: 'An intelligent stock consultant agent providing actionable, personalized investment advice in plain English.',
+        imageUrl: null,
+        tags: ['AI', 'FinTech', 'SaaS', 'Investment'],
+        liveUrl: null,
+
+        heroTagline: 'Democratizing Stock Investing with AI-Powered Guidance',
+        overview: {
+            client: 'Retail Investors',
+            services: 'AI Agent Development, API Integration, Simulation & Training',
+            timeline: '9 Months (Concept to MVP)',
+            techStack: ['Python', 'Pathway', 'Vector Search', 'React']
+        },
+        challenge: "Beginner and small investors are often overwhelmed by complex stock market data and lack access to affordable, personalized advice. Traditional platforms offer tools but little guidance, leading to high-risk decisions.",
+        solution: "We are building MarketSage AI, an intelligent agent that provides clear buy/sell/hold suggestions by analyzing a user's portfolio against live stock data and market news sentiment. It includes a 30-minute simulated trading chat to educate users on strategies and risk management without risking real capital.",
+        results: [
+            "Developed a personalized recommendation engine based on user portfolio and risk tolerance.",
+            "Integrated live stock data feeds and a vector search-driven news sentiment analysis pipeline.",
+            "Designed an interactive, chat-based simulation for safe, hands-on user education."
+        ],
+        quote: {
+            text: "MarketSage AI is designed to be a mentor, not just a tool. It empowers new investors with the knowledge and confidence to navigate the market wisely.",
+            author: "Lead AI Developer, DevilsLab"
         }
     },
     {
