@@ -41,7 +41,7 @@ export default function Preloader({ onLoaded }: PreloaderProps) {
   return (
     <div ref={preloaderRef} className="preloader">
       <div ref={logoRef} className="preloader-logo-container">
-        <h1 className="text-4xl md:text-5xl font-bold text-gradient">
+        <h1 className="text-4xl md:text-5xl font-bold text-gradient pb-2">
           DevilsLab Digitals
         </h1>
       </div>
