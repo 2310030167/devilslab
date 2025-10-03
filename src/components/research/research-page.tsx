@@ -26,7 +26,12 @@ const ResearchPage = () => {
 
     const papers = [
         { title: "The Impact of Decentralized AI on Data Privacy", authors: "A. Sharma, Dr. L. Chen", published: "Q3 2025", abstract: "This paper explores novel architectures for AI models that operate on decentralized data, enhancing user privacy without sacrificing performance." },
-        { title: "Scalable Consensus Mechanisms for Web3 Platforms", authors: "J. Doe, M. Patel", published: "Q4 2025", abstract: "Analyzing the trade-offs between speed, security, and decentralization in next-generation blockchain consensus protocols." },
+        { 
+            title: "Quantum-dot Cellular Automata: A Post-CMOS Paradigm", 
+            authors: "DevilsLab Research", 
+            published: "Q1 2026", 
+            abstract: "This research paper explores the revolutionary potential of Quantum-dot Cellular Automata (QCA) as a post-CMOS approach for the future of nanoelectronics. It provides an overview of QCA fundamentals, investigates design and simulation tools, and compares QCA-based circuits with conventional CMOS technology, highlighting improvements in power, speed, and scalability while also discussing implementation challenges and future prospects." 
+        },
         { title: "Anatomy of a Finfluencer Scam: Psychological Manipulation in Forex-Course Frauds", authors: "DevilsLab Research", published: "Q2 2026", abstract: "This research paper investigates how finfluencer-led forex-course scams exploit psychological triggers on social media by dissecting the architecture and behavioral tactics of such schemes. It applies psychological frameworks—including Cialdini’s principles of persuasion and prospect theory—to reveal how scammers design manipulative sales funnels. The study’s mixed-methods approach provides a context-specific, theory-driven analysis that exposes the nuanced cognitive and emotional levers activated by these scams." },
     ];
 
