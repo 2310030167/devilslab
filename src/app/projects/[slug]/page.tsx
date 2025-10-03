@@ -1,3 +1,4 @@
+
 import { projects } from '@/lib/projects-data';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
@@ -90,13 +91,19 @@ export default function ProjectCaseStudyPage({ params }: { params: { slug: strin
 
           <aside className="lg:sticky top-32">
             <div className="bg-gray-50 border border-gray-200/80 rounded-2xl p-8">
-              <div className="relative h-48 w-full mb-6 bg-white rounded-lg">
-                <Image
-                    src={project.imageUrl}
-                    alt={`${project.title} logo`}
-                    fill
-                    className="object-contain p-4"
-                />
+              <div className="relative h-48 w-full mb-6 bg-white rounded-lg border border-gray-200 flex items-center justify-center">
+                {project.imageUrl ? (
+                  <Image
+                      src={project.imageUrl}
+                      alt={`${project.title} logo`}
+                      fill
+                      className="object-contain p-4"
+                  />
+                ) : (
+                  <div className="text-center">
+                    <h4 className="text-xl font-bold text-primary">Coming Soon</h4>
+                  </div>
+                )}
               </div>
               <a href="https://Dendrites.ai" target="_blank" rel="noopener noreferrer" className="text-center text-muted-foreground mb-6 block hover:text-accent transition-colors">
                 Powered by DNDX <ArrowUpRight className="inline-block" size={16} />

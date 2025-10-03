@@ -30,7 +30,7 @@ export const projects = [
         slug: 'legal-lens-ai',
         title: 'Legal Lens AI',
         tagline: 'An AI-powered tool for intelligent legal document analysis and risk detection.',
-        imageUrl: 'https://picsum.photos/seed/legallens/600/400',
+        imageUrl: null,
         tags: ['AI', 'SaaS', 'Legal Tech'],
         liveUrl: null,
 
@@ -56,7 +56,7 @@ export const projects = [
         slug: 'data-whisperer',
         title: 'Data Whisperer',
         tagline: 'An AI analytics platform that turns business data into prioritized actions.',
-        imageUrl: 'https://picsum.photos/seed/datawhisperer/600/400',
+        imageUrl: null,
         tags: ['AI', 'SaaS', 'Analytics'],
         liveUrl: null,
     
