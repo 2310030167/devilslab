@@ -361,8 +361,9 @@ const ContactSection = () => {
 export default function HomePage() {
     const [isClient, setIsClient] = useState(false);
     useEffect(() => {
+        if (isClient) return;
         setIsClient(true);
-    }, []);
+    }, [isClient]);
 
   return (
     <>
