@@ -251,7 +251,7 @@ const ContactSection = () => {
         const GOOGLE_FORM_NAME_ID = 'entry.1864939234';
         const GOOGLE_FORM_EMAIL_ID = 'entry.1293399033';
         const GOOGLE_FORM_MESSAGE_ID = 'entry.1118674936';
-        const GOOGLE_FORM_ACTION_URL = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSc_C33f6y_T9E50nZqL-s2qj8vaM9y9xXhro1zV4t9BUhX-xA/formResponse';
+        const GOOGLE_FORM_ACTION_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc_C33f6y_T9E50nZqL-s2qj8vaM9y9xXhro1zV4t9BUhX-xA/formResponse';
 
         const formData = new FormData();
         formData.append(GOOGLE_FORM_NAME_ID, values.name);
